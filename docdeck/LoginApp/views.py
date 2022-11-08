@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, get_user_model, authenticate
@@ -20,7 +20,7 @@ def login_user(request):
             if user_auth:
                 login(request, user_auth)
                 response = f'Welcome Dr. {user}'
-                return render(request, 'index.html', {'response':response})
+                return redirect('index')
             else:
                 response = 'User name or password are invalid'
                 return render(request, 'index.html', {'response':response})
