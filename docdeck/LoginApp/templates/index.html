@@ -75,6 +75,11 @@
           <li><a href="contact.html">Contact</a></li>
           <li><a href="index.html" class="getstarted">Get Started</a></li>
         </ul>
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary" href="{% url 'logout' %}">logout</a>
+        {% else %}
+            <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+        {% endif %}
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 

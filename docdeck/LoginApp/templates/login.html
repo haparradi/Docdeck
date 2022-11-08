@@ -1,0 +1,13 @@
+
+
+
+
+<div>    
+    <form method="POST" action="{% url 'login' %}" autocomplete="off">
+        {% csrf_token %}
+        
+            {{my_form.as_p}}
+        
+        <button type="submit">Login</button> <button type="submit"><a href="{% url 'register' %}">Create User</a></button>
+    </form>
+</div>
