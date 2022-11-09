@@ -7,24 +7,20 @@
 
 
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    {% block extra_imports %}
+        
+    
     <script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
+    
+    {% endblock extra_imports %}
     <title>Index</title>
-</head>
+
 
 
 
 {% block register_block %}
-    
+
 <main>
     <div class="container">
       
@@ -49,15 +45,17 @@
                       <p class="text-center small">Enter your personal details to create account</p>
                     </div>
                     
-                    <form class="row g-3 needs-validation" novalidate>
+                    <form class="row g-3 needs-validation" novalidate>{% csrf_token %}
                                             
                       <div class="col-12">
                         <label class="form-label">{{ form.username.label_tag }}</label>
                         <div class="input-group has-validation">
                             {{ form.username.errors }}
                             {% render_field form.username hx-post="/login/check_username/" hx-target="#username-err" hx-swap="outerhtml" hx-trigger="keyup" class="form-control" %}
-                            <div class="text-danger mt-2" id="username-err"></div>
+                        
+
                         </div>
+                        <div class="text-danger mt-4" id="username-err"></div>
                       </div>
   
                       <div class="col-12">
