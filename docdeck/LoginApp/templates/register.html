@@ -1,26 +1,122 @@
+<!-- extend -->
+{% extends 'LoginApp/pages-register.html' %}
 <!-- Load -->
 {% load widget_tweaks %}
 {% load static %}
 
 
-<!-- HTMX -->
-<script src="https://unpkg.com/htmx.org@1.6.0"></script>
 
 
-<div class="align-center col-8 offset-2">
+
+    {% block extra_imports %}
+        
+    
+    <script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
+    
+    {% endblock extra_imports %}
+    <title>Index</title>
+
+
+
+
+{% block register_block %}
+
+<main>
+    <div class="container">
+      
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                
+                <div class="d-flex justify-content-center py-4">
+                  <a href="index.html" class="logo d-flex align-items-center w-auto">
+                    <img src="/static/img/logo.png" alt="">
+                    <span class="d-none d-lg-block">NiceAdmin</span>
+                  </a>
+                </div><!-- End Logo -->
+                
+                <div class="card mb-3">
+  
+                  <div class="card-body">
+                    
+                    <div class="pt-4 pb-2">
+                      <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                      <p class="text-center small">Enter your personal details to create account</p>
+                    </div>
+                    
+                    <form class="row g-3 needs-validation" novalidate>{% csrf_token %}
+                                            
+                      <div class="col-12">
+                        <label class="form-label">{{ form.username.label_tag }}</label>
+                        <div class="input-group has-validation">
+                            {{ form.username.errors }}
+                            {% render_field form.username hx-post="/login/check_username/" hx-target="#username-err" hx-swap="outerhtml" hx-trigger="keyup" class="form-control" %}
+                        
+
+                        </div>
+                        <div class="text-danger mt-4" id="username-err"></div>
+                      </div>
+  
+                      <div class="col-12">
+                        <label for="yourPassword" class="form-label">{{ form.password1.label_tag }}</label>
+                        {{ form.password1.errors }}
+                        {% render_field form.password1 class="form-control" %}
+                      </div>
+                      
+                      <div class="col-12">
+                        <label for="yourPassword" class="form-label">{{ form.password2.label_tag }}</label>
+                        {{ form.password2.errors }}
+                        {% render_field form.password2 class="form-control" %}
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-check">
+                          <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                          <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
+                          <div class="invalid-feedback">You must agree before submitting.</div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                      </div>
+                      <div class="col-12">
+                        <p class="small mb-0">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+                      </div>
+                    </form>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </section>
+        
+      </div>
+    </main><!-- End #main -->
+
+
+
+
+
+
+
+
+<!-- <div class="row">
     <p class="lead mb-3 ml-0" style="color: orangered;">Register</p>
     <hr/>
     <form method="POST" action="{% url 'register' %}" autocomplete='off'>
         {% csrf_token %}
-
-        <div class="form-group mb-3">
+        
+        <div class="col-md-6 form-group">
             <label>{{ form.username.label_tag }}</label>
             {{ form.username.errors }}
             {% render_field form.username hx-post="/login/check_username/" hx-target="#username-err" hx-swap="outerhtml" hx-trigger="keyup" class="form-control" %}
             <div class="text-danger mt-2" id="username-err"></div>
         </div>
         <div>
-
+            
             <label>{{ form.password1.label_tag }}</label>
             {{ form.password1.errors }}
             {% render_field form.password1 class="form-control" %}
@@ -33,4 +129,6 @@
         
         <button type="submit" class="btn btn-success mt-2">Register</button>
     </form>
-</div>
+</div> -->
+{% endblock %}
+
