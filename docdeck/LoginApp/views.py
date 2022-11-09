@@ -48,3 +48,6 @@ def check_username(request):
         return HttpResponse('<div style="color: red;"> This username already exists </div>')
     else:
         return HttpResponse('<div style="color: green;"> This username is available </div>')
+
+def home(request):
+    return render(request, 'home.html')

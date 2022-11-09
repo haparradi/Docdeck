@@ -19,9 +19,10 @@ from . import views
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('', views.login_user, name='login'),
+    path('login/', views.login_user, name='login'),
     path('register/', views.RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('', views.home, name='home'),
 ]
 
 htmx_views = [
