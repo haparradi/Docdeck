@@ -23,6 +23,11 @@ urlpatterns = [
     path('register/', views.RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('', views.home, name='home'),
+    path('services/', views.services, name='services'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
+    path('team/', views.team, name='team'),
+    path('blog/', views.blog, name='blog'),
 ]
 
 htmx_views = [
