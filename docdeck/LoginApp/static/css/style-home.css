@@ -42,7 +42,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #d9232d;
+  background: #f9df00;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -51,7 +51,7 @@ h6 {
 
 .back-to-top i {
   font-size: 28px;
-  color: #fff;
+  color: #11132a;
   line-height: 0;
 }
 
@@ -69,7 +69,7 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: white;
+  background: #11132a;
   transition: all 0.5s;
   z-index: 997;
   padding: 20px 0;
@@ -94,7 +94,7 @@ h6 {
 }
 
 #header .logo a {
-  color: #556270;
+  color: #f9df00;
 }
 
 #header .logo img {
@@ -132,7 +132,7 @@ h6 {
   font-family: "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 500;
-  color: #556270;
+  color: #ffff;
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -148,23 +148,23 @@ h6 {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #d9232d;
+  color: #f9df00;
 }
 
 .navbar .getstarted,
 .navbar .getstarted:focus {
-  background: #d9232d;
+  background: #f9df00;
   padding: 8px 25px;
   margin-left: 30px;
   border-radius: 4px;
   font-weight: 400;
-  color: #fff;
+  color: #11132a;
 }
 
 .navbar .getstarted:hover,
 .navbar .getstarted:focus:hover {
-  color: #fff;
-  background: #e1444d;
+  color: #11132a;
+  background: #f9df00;
 }
 
 .navbar .dropdown ul {
@@ -1976,14 +1976,14 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: #4a5562;
+  background: #11132a;
   padding: 0 0 30px 0;
   color: #fff;
   font-size: 14px;
 }
 
 #footer .footer-top {
-  background: #515d6a;
+  background: #11132a;
   padding: 60px 0 30px 0;
 }
 
@@ -2010,7 +2010,7 @@ section {
 #footer .footer-top .social-links a {
   font-size: 18px;
   display: inline-block;
-  background: rgba(255, 255, 255, 0.1);
+  background: #11132a;
   color: #fff;
   line-height: 1;
   padding: 8px 0;
@@ -2023,7 +2023,7 @@ section {
 }
 
 #footer .footer-top .social-links a:hover {
-  background: #d9232d;
+  background: #f9df00;
   color: #fff;
   text-decoration: none;
 }
@@ -2048,7 +2048,7 @@ section {
 
 #footer .footer-top .footer-links ul i {
   padding-right: 2px;
-  color: rgba(255, 255, 255, 0.6);
+  color: #fff;
   font-size: 18px;
   line-height: 1;
 }
@@ -2064,7 +2064,7 @@ section {
 }
 
 #footer .footer-top .footer-links ul a {
-  color: rgba(255, 255, 255, 0.6);
+  color: #fff;
   transition: 0.3s;
   display: inline-block;
   line-height: 1;
@@ -2097,14 +2097,14 @@ section {
   background: none;
   font-size: 16px;
   padding: 0 20px 2px 20px;
-  background: #d9232d;
+  background: #f9df00;
   color: #fff;
   transition: 0.3s;
   border-radius: 0 4px 4px 0;
 }
 
 #footer .footer-top .footer-newsletter form input[type=submit]:hover {
-  background: #df3740;
+  background: #f9df00;
 }
 
 #footer .copyright {
