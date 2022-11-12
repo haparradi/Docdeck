@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import AuthenticationForm
+from .models import Doctor
+from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, get_user_model, authenticate
-from django.views.generic.edit import FormView
-from .forms import RegisterForm
+from django.contrib import messages
+from django.views.generic.edit import FormView, UpdateView
+from .forms import RegisterForm, UpdateUserForm
 
 # Create your views here.
 def login_user(request):
@@ -48,6 +52,27 @@ def check_username(request):
         return HttpResponse('<div style="color: red;"> This username already exists </div>')
     else:
         return HttpResponse('<div style="color: green;"> This username is available </div>')
+
+@login_required
+def update_user(request):
+    usuario = request.user
+    if request.method=='POST':
+        user_form = UpdateUserForm(data=request.POST, files=request.FILES, instance=request.user)       
+                
+        if user_form.is_valid():
+            usuario.save()
+            messages.success(request, 'Perfil Actualizado')
+            return redirect('index')
+        
+        return render(request, 'users-profile.html', {'user_form':user_form , 'mensaje':'Formulario invalido'})
+    else:
+        return redirect('index')
+
+# class UpdateUser(LoginRequiredMixin, UpdateView):
+#    model = Doctor
+#    form_class = UpdateUserForm
+#    template_name = 'users-profile.html'
+#    success_url = reverse_lazy('index')
 
 def home(request):
     return render(request, 'home.html')

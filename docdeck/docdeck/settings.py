@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'LoginApp',
     'widget_tweaks',
     'django_extensions',
+    'phone_field',
+    
 ]
 
 MIDDLEWARE = [
