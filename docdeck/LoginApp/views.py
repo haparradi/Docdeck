@@ -57,10 +57,10 @@ def check_username(request):
 def update_user(request):
     usuario = request.user
     if request.method=='POST':
-        user_form = UpdateUserForm(data=request.POST, files=request.FILES, instance=request.user)       
-                
+        user_form = UpdateUserForm(data=request.POST, files=request.FILES, instance=usuario)
+        
         if user_form.is_valid():
-            usuario.save()
+            user_form.save()
             messages.success(request, 'Perfil Actualizado')
             return redirect('index')
         

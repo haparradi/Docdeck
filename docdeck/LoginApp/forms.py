@@ -14,5 +14,5 @@ class UpdateUserForm(UserChangeForm):
     
     class Meta:
         model = Doctor        
-        fields = ['username', 'first_name', 'last_name', 'email', 'especialidad', 'image', 'telefono']
+        fields = ['first_name', 'last_name', 'email', 'especialidad', 'image', 'telefono']
         help_text = {k: "" for k in fields}
