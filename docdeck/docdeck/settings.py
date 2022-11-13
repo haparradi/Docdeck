@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'DashboardApp',
     'LoginApp',
+    'PacientesApp',
     'widget_tweaks',
     'django_extensions',
     'phone_field',
