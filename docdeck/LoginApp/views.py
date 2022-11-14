@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect
+import os
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from .models import Doctor
-from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, get_user_model, authenticate
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import FormView, UpdateView
-from .forms import RegisterForm, UpdateUserForm
+from .forms import RegisterForm, UpdateUserForm, UpdateProfileForm, ChangePasswordForm
 
 # Create your views here.
 def login_user(request):
@@ -47,7 +49,6 @@ class RegisterView(FormView):
 
 def check_username(request):
     username = request.POST.get('username')
-    print(username)
     if get_user_model().objects.filter(username=username).exists():
         return HttpResponse('<div style="color: red;"> This username already exists </div>')
     else:
@@ -55,12 +56,12 @@ def check_username(request):
 
 @login_required
 def update_user(request):
-    usuario = request.user
     if request.method=='POST':
-        user_form = UpdateUserForm(data=request.POST, files=request.FILES, instance=usuario)
-        
-        if user_form.is_valid():
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)     
+        if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
+            profile_form.save()
             messages.success(request, 'Perfil Actualizado')
             return redirect('index')
         
@@ -68,11 +69,17 @@ def update_user(request):
     else:
         return redirect('index')
 
-# class UpdateUser(LoginRequiredMixin, UpdateView):
-#    model = Doctor
-#    form_class = UpdateUserForm
-#    template_name = 'users-profile.html'
-#    success_url = reverse_lazy('index')
+def change_password(request):
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.user, request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            if data['new_password1'] == data['new_password2']:                
+                form.save()
+            messages.success(request, "Your password has been changed")
+            return redirect('login')
+    pass
+
 
 def home(request):
     return render(request, 'home.html')

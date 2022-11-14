@@ -229,7 +229,7 @@
             
             
             {% if user.is_authenticated %}
-            <img src="{{user.image.url}}" alt="Profile" class="rounded-circle" role="img">
+            <img src="{{user.profile.avatar.url}}" alt="Profile" class="rounded-circle" role="img">
             {% endif %}
             <span class="d-none d-md-block dropdown-toggle ps-2">{{user.username}}</span>
           </a><!-- End Profile Iamge Icon -->

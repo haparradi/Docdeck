@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phone_field import PhoneField
@@ -5,10 +6,14 @@ from phone_field import PhoneField
 
 class Doctor(AbstractUser):
     especialidad = models.CharField(max_length=20, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True, upload_to = "meida/", default="default_avatar.jpg")
     telefono = PhoneField(null=True, blank=True)
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(Doctor, on_delete=models.CASCADE)
 
+    avatar = models.ImageField(null=True, blank=True, upload_to = 'media/', default="default_avatar.jpg")
+    bio = models.TextField()
 
-    
+    def __str__(self):
+        return self.user.username

@@ -3,4 +3,7 @@ from django.shortcuts import redirect
 # views
 
 def home(request):
-    return redirect('home')
+    # if request.user.is_authenticated():
+    #     return redirect('index')
+    # else:
+        return redirect('home')
