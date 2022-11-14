@@ -12,3 +12,9 @@ def profile(request):
     profile_form = UpdateProfileForm(instance=request.user.profile)
     password_form = ChangePasswordForm(request.user)
     return render(request, 'users-profile.html', {'user_form':user_form, 'profile_form':profile_form, 'password_form':password_form})
+
+def records(request):
+    return render(request, 'records.html')
+
+def patients(request):
+    return render(request, 'patients.html')

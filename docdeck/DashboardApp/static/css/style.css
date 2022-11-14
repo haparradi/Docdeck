@@ -150,7 +150,7 @@ h6 {
 }
 
 .dropdown-menu .dropdown-item:hover {
-  background-color: #f6f9ff;
+  background-color: #11132a;
 }
 
 @media (min-width: 768px) {
@@ -158,13 +158,13 @@ h6 {
     content: "";
     width: 13px;
     height: 13px;
-    background: #fff;
+    background: #f9df00;
     position: absolute;
     top: -7px;
     right: 20px;
     transform: rotate(45deg);
-    border-top: 1px solid #eaedf1;
-    border-left: 1px solid #eaedf1;
+    border-top: 1px solid #f9df00;
+    border-left: 1px solid #f9df00;
   }
 }
 
@@ -381,14 +381,16 @@ h6 {
 }
 
 .logo img {
-  max-height: 26px;
+  max-height: 60x;
+  max-width: 200px;
   margin-right: 6px;
+  margin-left: 12px;
 }
 
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #012970;
+  color: #11132a;
   font-family: "Nunito", sans-serif;
 }
 
@@ -397,7 +399,7 @@ h6 {
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: #11132a;
   padding-left: 20px;
   /* Toggle Sidebar Button */
   /* Search Bar */
@@ -407,7 +409,7 @@ h6 {
   font-size: 32px;
   padding-left: 10px;
   cursor: pointer;
-  color: #012970;
+  color: #f9df00;
 }
 
 .header .search-bar {
@@ -418,9 +420,9 @@ h6 {
 @media (max-width: 1199px) {
   .header .search-bar {
     position: fixed;
-    top: 50px;
+    top: 0;
     left: 0;
-    right: 0;
+    right: 500px;
     padding: 20px;
     box-shadow: 0px 0px 15px 0px rgba(1, 41, 112, 0.1);
     background: white;
@@ -444,7 +446,7 @@ h6 {
 .header .search-form input {
   border: 0;
   font-size: 14px;
-  color: #012970;
+  color: #11132a;
   border: 1px solid rgba(1, 41, 112, 0.2);
   padding: 7px 38px 7px 8px;
   border-radius: 3px;
@@ -456,7 +458,7 @@ h6 {
 .header .search-form input:hover {
   outline: none;
   box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
-  border: 1px solid rgba(1, 41, 112, 0.3);
+  border: 1px solid #11132a;
 }
 
 .header .search-form button {
@@ -467,7 +469,7 @@ h6 {
 }
 
 .header .search-form button i {
-  color: #012970;
+  color: #11132a;
 }
 
 /*--------------------------------------------------------------
@@ -484,13 +486,13 @@ h6 {
 
 .header-nav .nav-icon {
   font-size: 22px;
-  color: #012970;
+  color: #f9df00;
   margin-right: 25px;
   position: relative;
 }
 
 .header-nav .nav-profile {
-  color: #012970;
+  color: #f9df00;
 }
 
 .header-nav .nav-profile img {
@@ -535,11 +537,11 @@ h6 {
 .header-nav .notifications .notification-item p {
   font-size: 13px;
   margin-bottom: 3px;
-  color: #919191;
+  color: #11132a;
 }
 
 .header-nav .notifications .notification-item:hover {
-  background-color: #f6f9ff;
+  background-color: #f9df00;
 }
 
 .header-nav .messages {
@@ -564,17 +566,17 @@ h6 {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #444444;
+  color: #11132a;
 }
 
 .header-nav .messages .message-item p {
   font-size: 13px;
   margin-bottom: 3px;
-  color: #919191;
+  color: #11132a;
 }
 
 .header-nav .messages .message-item:hover {
-  background-color: #f6f9ff;
+  background-color: #f9df00;
 }
 
 .header-nav .profile {
@@ -587,7 +589,7 @@ h6 {
   font-size: 18px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #444444;
+  color: #11132a;
 }
 
 .header-nav .profile .dropdown-header span {
@@ -607,7 +609,7 @@ h6 {
 }
 
 .header-nav .profile .dropdown-item:hover {
-  background-color: #f6f9ff;
+  background-color: #f9df00;
 }
 
 /*--------------------------------------------------------------
@@ -624,9 +626,9 @@ h6 {
   padding: 20px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #aab7cf transparent;
+  scrollbar-color: #f9df00 transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: #11132a;
 }
 
 @media (max-width: 1199px) {
@@ -638,11 +640,11 @@ h6 {
 .sidebar::-webkit-scrollbar {
   width: 5px;
   height: 8px;
-  background-color: #fff;
+  background-color: #f9df00;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: #aab7cf;
+  background-color: #f9df00;
 }
 
 @media (min-width: 1200px) {
@@ -690,7 +692,7 @@ h6 {
 .sidebar-nav .nav-heading {
   font-size: 11px;
   text-transform: uppercase;
-  color: #899bbd;
+  color: #ffff;
   font-weight: 600;
   margin: 10px 0 5px 15px;
 }
@@ -700,9 +702,9 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #f9df00;
   transition: 0.3;
-  background: #f6f9ff;
+  background: #11132a;
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -710,25 +712,25 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #4154f1;
+  color: #f9df00;
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
-  background: #fff;
+  color: #f9df00;
+  background: #11132a;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: #f9df00;
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
-  background: #f6f9ff;
+  color: #11132a;
+  background: #f9df00;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: #11132a;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -751,7 +753,7 @@ h6 {
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  color: #012970;
+  color: #11132a;
   transition: 0.3;
   padding: 10px 0 10px 40px;
   transition: 0.3s;
@@ -766,11 +768,11 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #4154f1;
+  color: #f9df00;
 }
 
 .sidebar-nav .nav-content a.active i {
-  background-color: #4154f1;
+  background-color: #f9df00;
 }
 
 /*--------------------------------------------------------------
@@ -1020,25 +1022,26 @@ h6 {
 .profile .profile-card h2 {
   font-size: 24px;
   font-weight: 700;
-  color: #2c384e;
+  color: #11132a;
   margin: 10px 0 0 0;
 }
 
 .profile .profile-card h3 {
   font-size: 18px;
+  color: #f9df00;
 }
 
 .profile .profile-card .social-links a {
   font-size: 20px;
   display: inline-block;
-  color: rgba(1, 41, 112, 0.5);
+  color: #11132a;
   line-height: 0;
   margin-right: 10px;
   transition: 0.3s;
 }
 
 .profile .profile-card .social-links a:hover {
-  color: #012970;
+  color: #f9df00;
 }
 
 .profile .profile-overview .row {
@@ -1047,17 +1050,17 @@ h6 {
 }
 
 .profile .profile-overview .card-title {
-  color: #012970;
+  color: #11132a;
 }
 
 .profile .profile-overview .label {
   font-weight: 600;
-  color: rgba(1, 41, 112, 0.6);
+  color: #11132a;
 }
 
 .profile .profile-edit label {
   font-weight: 600;
-  color: rgba(1, 41, 112, 0.6);
+  color: #11132a;
 }
 
 .profile .profile-edit img {
@@ -1249,12 +1252,12 @@ h6 {
 
 .footer .copyright {
   text-align: center;
-  color: #012970;
+  color: #11132a;
 }
 
 .footer .credits {
   padding-top: 5px;
   text-align: center;
   font-size: 13px;
-  color: #012970;
+  color: #11132a;
 }
