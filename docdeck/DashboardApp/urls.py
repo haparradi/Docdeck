@@ -21,5 +21,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('profile/', views.profile, name='profile'),
     path('Records/', views.records, name='records'),
-    path('patients/', views.patients, name='patients'),
+    path('patients/', views.PatientsList.as_view(), name='patients'),
+    path('add-patient/', views.add_patient, name='add-patient'),
 ]

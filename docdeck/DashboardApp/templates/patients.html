@@ -3,5 +3,11 @@
 {% load static %}
 
 {% block changing-part %}
-
+<div>
+    
+    {% for patient in patients %}
+        {{patient}}
+    {% endfor %}
+    <a class="btn btn-primary btn-sm" href="{% url 'add-patient' %}">Add Patient</a>
+</div>
 {% endblock %}  

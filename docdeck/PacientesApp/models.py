@@ -10,7 +10,7 @@ ESTADO_CIVIL_CHOICE = [
 class HistoriaClinica(models.Model):
     historia = models.TextField()
     pub_date = models.DateTimeField(blank=True, default=timezone.now)
-    pass
+    
 
 
 class Paciente(models.Model):
@@ -23,5 +23,5 @@ class Paciente(models.Model):
     estado_civil = models.CharField(max_length=30, choices=ESTADO_CIVIL_CHOICE)
     religion = models.CharField(max_length=20)
     fehca_de_nacimiento = models.DateField()
-    historia_clinica = models.ForeignKey(HistoriaClinica, on_delete = models.CASCADE, blank=True, null=True)
+    historia_clinica = models.OneToOneField(HistoriaClinica, on_delete = models.CASCADE)
     
