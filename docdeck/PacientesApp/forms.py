@@ -3,7 +3,7 @@ from django.contrib.admin.widgets import AdminDateWidget
 from .models import Paciente, HistoriaClinica
 
 class PatientForm(forms.ModelForm):
-    fehca_de_nacimiento = forms.DateField(widget = forms.SelectDateWidget())
+    fehca_de_nacimiento = forms.DateField(widget = AdminDateWidget())
     class Meta:
         model = Paciente
         fields = ['nombre','apellido', 'documento','domicilio','telefono','email','estado_civil','religion','fehca_de_nacimiento']
