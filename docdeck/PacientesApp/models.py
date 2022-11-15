@@ -7,10 +7,6 @@ ESTADO_CIVIL_CHOICE = [
     ('Viudo/a','VIUDO/A'),
 ]
 # Create your models here.
-class HistoriaClinica(models.Model):
-    historia = models.TextField()
-    pub_date = models.DateTimeField(blank=True, default=timezone.now)
-    
 
 
 class Paciente(models.Model):
@@ -23,5 +19,12 @@ class Paciente(models.Model):
     estado_civil = models.CharField(max_length=30, choices=ESTADO_CIVIL_CHOICE)
     religion = models.CharField(max_length=20)
     fehca_de_nacimiento = models.DateField()
-    historia_clinica = models.OneToOneField(HistoriaClinica, on_delete = models.CASCADE)
     
+    def __str__(self):
+        return f'{self.nombre} {self.apellido}'
+    
+    
+class HistoriaClinica(models.Model):
+    historia = models.TextField()
+    pub_date = models.DateTimeField(blank=True, default=timezone.now)
+    paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE)

@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, get_user_model, authenticate
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.edit import FormView, UpdateView
+from django.views.generic.edit import FormView
 from .forms import RegisterForm, UpdateUserForm, UpdateProfileForm, ChangePasswordForm
 
 # Create your views here.

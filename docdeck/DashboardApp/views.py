@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
+from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from PacientesApp.models import Paciente, HistoriaClinica
 from django.views.generic import ListView
+from django.views.generic.edit import FormView
 from LoginApp.forms import UpdateUserForm, UpdateProfileForm, ChangePasswordForm
 from PacientesApp.forms import PatientForm, HistoriaForm
 
@@ -28,17 +30,25 @@ class PatientsList(ListView):
 def add_patient(request):
     if request.method == 'POST':
         patient_form = PatientForm(request.POST)
-        historia_form = HistoriaForm(request.POST)
-        if patient_form.is_valid() and historia_form.is_valid():
+        # historia_form = HistoriaForm(request.POST)
+        if patient_form.is_valid():
             patient_data = patient_form.cleaned_data
-            historia_data = historia_form.cleaned_data
-            paciente = Paciente(nombre=patient_data['nombre'],apellido=patient_data['apellido'],domicilio=patient_data['domicilio'],telefono=patient_data['telefono'],email=patient_data['email'],estado_civil=patient_data['estado_civil'],religion=patient_data['religion'],fehca_de_nacimiento=patient_data['fehca_de_nacimiento'])
-            historia = HistoriaClinica(historia=historia_data['historia'])
+            
+            paciente = Paciente(nombre=patient_data['nombre'],apellido=patient_data['apellido'],documento=patient_data['documento'], domicilio=patient_data['domicilio'],telefono=patient_data['telefono'],email=patient_data['email'],estado_civil=patient_data['estado_civil'],religion=patient_data['religion'],fehca_de_nacimiento=patient_data['fehca_de_nacimiento'])
+            # historia = Paciente.historia_clinica(historia=historia_data['historia'])
             paciente.save()
-            historia.save()
+            # historia.save()
             return redirect('index')
         return PatientsList.as_view()
     else:
         patient_form = PatientForm()
-        historia_form = HistoriaForm()
-        return render(request, 'add-patient.html', {'patient_form':patient_form, 'historia_form':historia_form})
+        
+        return render(request, 'add-patient.html', {'patient_form':patient_form})
+# class AddPatientView(FormView):
+#     form_class = PatientForm
+#     template_name = 'register.html'
+#     success_url = reverse_lazy('login')
+
+#     def form_valid(self, form):
+#         form.save()  # save the user
+#         return super().form_valid(form)

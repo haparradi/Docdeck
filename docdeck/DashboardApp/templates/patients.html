@@ -6,7 +6,7 @@
 <div>
     
     {% for patient in patients %}
-        {{patient}}
+       <li> {{patient}}</li>
     {% endfor %}
     <a class="btn btn-primary btn-sm" href="{% url 'add-patient' %}">Add Patient</a>
 </div>
