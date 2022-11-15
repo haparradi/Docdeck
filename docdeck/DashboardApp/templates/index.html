@@ -254,7 +254,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' %}">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -309,7 +309,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
       
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="{% url 'index' %}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -488,7 +488,7 @@
       <li class="nav-heading">Pages</li>
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{% url 'profile' %}">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
@@ -542,11 +542,13 @@
   
   <main id="main" class="main">
     
+    {% block main %}
+            
     <div class="pagetitle">
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
           <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
@@ -1182,7 +1184,7 @@
           </div><!-- End News & Updates -->
 
         </div><!-- End Right side columns -->
-
+      {% endblock main %}
       </div>
     </section>
     
