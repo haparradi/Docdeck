@@ -14,17 +14,17 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
-  color: #444444;
+  background: #11132a;
+  color: #4a474c;
 }
 
 a {
-  color: #4154f1;
+  color: #f9df00;
   text-decoration: none;
 }
 
 a:hover {
-  color: #717ff5;
+  color: #f9df00;
   text-decoration: none;
 }
 
@@ -63,7 +63,7 @@ h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: #11132a;
 }
 
 /*--------------------------------------------------------------
@@ -76,7 +76,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: #f9df00;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -85,13 +85,13 @@ h6 {
 
 .back-to-top i {
   font-size: 24px;
-  color: #fff;
+  color: #11132a;
   line-height: 0;
 }
 
 .back-to-top:hover {
-  background: #6776f4;
-  color: #fff;
+  background: #f9df00;
+  color: #11132a;
 }
 
 .back-to-top.active {

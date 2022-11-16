@@ -1,3 +1,9 @@
+{% extends 'dashboard-master.html' %}
+
+{% load static %}
+
+{% block changing-part %}
+
 <form action="{%url 'add-patient'%}" method="POST">{% csrf_token %}
 
     {{patient_form.as_table}}
@@ -5,3 +11,5 @@
 
     <input type="submit" name="Submit">
 </form>
+
+{% endblock %}

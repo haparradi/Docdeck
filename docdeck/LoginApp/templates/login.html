@@ -14,16 +14,18 @@
             <div class="col-12">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                  <label class="form-check-label" for="rememberMe">Remember me</label>
+                  <label class="form-check-label" for="rememberMe">Recuerdame</label>
                 </div>
               </div>
               <div class="col-12">
-                <button class="btn btn-primary w-100" type="submit">Login</button>
+                <button class="btn btn-primary w-100" type="submit">Iniciar sesión</button>
               </div>
               <div class="col-12">
-                <p class="small mb-0">Don't have account? <a href="{% url 'register' %}">Create an account</a></p>
+                <p class="small mb-0">No tienes una cuenta? <a href="{% url 'register' %}">¡Registrate!</a></p>
               </div>
         </form>
     </div>
 </div>
+
+
 {% endblock login %}
