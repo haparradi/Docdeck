@@ -1,7 +1,78 @@
-<form action="{%url 'add-patient'%}" method="POST">{% csrf_token %}
+{% extends 'dashboard-master.html' %}
+{% load widget_tweaks %}
+{% load static %}
 
-    {{patient_form.as_table}}
-    {{historia_form.as_table}}
+{% block changing-part %}
 
-    <input type="submit" name="Submit">
-</form>
+    <form action="{%url 'add-patient'%}" method="POST" >{% csrf_token %}
+
+        <div class="row mb-3">
+            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">{{patient_form.nombre.label_tag}}</label>
+            <div class="col-md-8 col-lg-9">
+            {{patient_form.nombre.errors}}
+            {% render_field patient_form.nombre %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">{{patient_form.apellido.label_tag}}</label>
+            <div class="col-md-8 col-lg-9">
+            {{patient_form.apellido.errors}}
+            {% render_field patient_form.apellido %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">{{patient_form.documento.label_tag}}</label>
+            <div class="col-md-8 col-lg-9">
+            {{patient_form.documento.errors}}
+            {% render_field patient_form.documento %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">{{patient_form.domicilio.label_tag}}</label>
+            <div class="col-md-8 col-lg-9">
+            {{patient_form.domicilio.errors}}
+            {% render_field patient_form.domicilio %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">{{patient_form.telefono.label_tag}}</label>
+            <div class="col-md-8 col-lg-9">
+            {{patient_form.telefono.errors}}
+            {% render_field patient_form.telefono %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">{{patient_form.email.label_tag}}</label>
+            <div class="col-md-8 col-lg-9">
+            {{patient_form.email.errors}}
+            {% render_field patient_form.email %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">{{patient_form.estado_civil.label_tag}}</label>
+            <div class="col-md-8 col-lg-9">
+            {{patient_form.estaco_civil.errors}}
+            {% render_field patient_form.estado_civil %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">{{patient_form.religion.label_tag}}</label>
+            <div class="col-md-8 col-lg-9">
+            {{patient_form.religion.errors}}
+            {% render_field patient_form.religion %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">{{date_form.fecha_de_nacimiento.label_tag}}</label>
+            <div class="col-md-8 col-lg-9" >
+            {{date_form.fecha_de_nacimiento.errors}}
+            {% render_field date_form.fecha_de_nacimiento type="date" %}
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+
+{% endblock %}  

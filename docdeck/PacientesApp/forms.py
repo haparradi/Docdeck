@@ -1,12 +1,23 @@
-from django import forms 
+from django import forms
+
 from django.contrib.admin.widgets import AdminDateWidget   
 from .models import Paciente, HistoriaClinica
 
 class PatientForm(forms.ModelForm):
-    fehca_de_nacimiento = forms.DateField(widget = forms.SelectDateWidget())
     class Meta:
         model = Paciente
-        fields = ['nombre','apellido', 'documento','domicilio','telefono','email','estado_civil','religion','fehca_de_nacimiento']
+        fields = ['nombre','apellido', 'documento','domicilio','telefono','email','estado_civil','religion']
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+        
+class DataTreinoForm(forms.ModelForm):
+    class Meta:
+        model = Paciente
+        fields = ['fecha_de_nacimiento']
+        widgets = {
+            'dateField': DateInput
+        }
 
 
 class HistoriaForm(forms.ModelForm):
