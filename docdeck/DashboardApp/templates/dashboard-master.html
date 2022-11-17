@@ -315,6 +315,14 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'home' %}">
+          <i class="ri-home-smile-line"></i>
+          <span>Inicio</span>
+        </a>
+
+      </li><!-- End home Page Nav -->
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{% url 'blog' %}">
           <i class="ri-newspaper-line"></i>
           <span>Blog</span>
@@ -333,18 +341,6 @@
     </ul>
     
   </aside><!-- End Sidebar-->
-  
-  <main id="main" class="main">
-    
-    <div class="pagetitle">
-      <h1>¡Hola Dr(a). Bienvenido(a)!</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
-          <li class="breadcrumb-item active"><a href="{% url 'index' %}">Dashboard</a></li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
 
 {% block changing-part %}
     

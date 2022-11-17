@@ -30,13 +30,6 @@
     <!-- Template Main CSS File -->
     <!-- <link href="/static/css/style.css" rel="stylesheet"> -->
     <link href="{% static 'css\style-home.css' %}" rel="stylesheet" />
-  
-    <!-- =======================================================
-    * Template Name: Sailor - v4.9.1
-    * Template URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
   </head>
   
   <body>
@@ -51,16 +44,16 @@
   
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a href="{% url 'home' %}" class="active">Home</a></li>
-            <li><a href="{% url 'services' %}">Services</a></li>
-            <li><a href="{% url 'team' %}">Team</a></li>
+            <li><a href="{% url 'home' %}" class="active">Inicio</a></li>
+            <li><a href="{% url 'services' %}">Servicios</a></li>
+            <li><a href="{% url 'team' %}">Equipo</a></li>
             <li><a href="{% url 'blog' %}">Blog</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'contact' %}">Contact</a></li>
-            <li><a href="index.html" class="getstarted">Get Started</a></li>
+            <li><a href="{% url 'about' %}">Acerca de nosotros</a></li>
+            <li><a href="{% url 'contact' %}">Contacto</a></li>
           </ul>
           {% if user.is_authenticated %}
-              <a class="getstarted" href="{% url 'logout' %}">logout</a>
+              <a href="{% url 'index' %}" class="getstarted">Dashboard</a>
+              <a class="getstarted" href="{% url 'logout' %}">Logout</a>
           {% else %}
               <a class="getstarted" href="{% url 'login' %}">Login</a>
           {% endif %}
@@ -122,10 +115,10 @@
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <h4>Suscribete a nuestro Newsletter</h4>
+            <p>Obten informacion acerca de nuestras noticias, actualizaciones y promociones en tu correo.</p>
             <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
+              <input type="email" name="email"><input type="submit" value="Subscribirte">
             </form>
 
           </div>
@@ -136,14 +129,10 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Sailor</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>DocDeck</span></strong>. All Rights Reserved 2022.
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/sailor-free-bootstrap-theme/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="https://docdeck.co/">DocDeck</a>
       </div>
     </div>
   </footer><!-- End Footer -->

@@ -4,26 +4,36 @@
 
 {% block changing-part %}
 
-<section class="section"></section>
-    <div class="card">
-        <div class="card-body">
-        <h5 class="card-title">Pacientes:</h5>
-        <h6 class="card-subtitle mb-2 text-muted">En esta seccion puede Agregar, editar o eliminar pacientes.</h6>
-        <p></p>
-        <div>   
+<main id="main" class="main">
     
-            {% for patient in patients %}
-               <li> {{patient}}</li>
-            {% endfor %}
+    <div class="pagetitle">
+      <h1>Pacientes</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active"><a href="{% url 'index' %}">Dashboard</a></li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
 
+<section class="section"></section>
+<div class="card">
+    <div class="card-body">
+    <h5 class="card-title">Pacientes:</h5>
+    <!-- <h6 class="card-subtitle mb-2 text-muted">En esta seccion...</h6>
+    <p></p> -->
+    <div>
+    
+        {% for patient in patients %}{% csrf_token %}
+           <li><a href="{% url 'patient-detail' patient.id%}"> {{patient}} </a></li>
+        {% endfor %}
 
-        </div>
-        <p></p>
-        <p></p>
-        <p class="card-text"><a href="{% url 'add-patient' %}" class="btn btn-primary">Crear un nuevo paciente</a></p>
-        </div>
-    </div><!-- End Card with titles, buttons, and links -->
+    </div>
+    <p></p>
+    <p></p>
+    <p class="card-text"><a href="{% url 'add-patient' user.id %}" class="btn btn-primary">Crear un nuevo paciente</a></p>
+    </div>
+</div><!-- End Card with titles, buttons, and links -->
 </section>
-
 
 {% endblock %}  

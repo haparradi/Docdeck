@@ -1,0 +1,37 @@
+{% extends 'dashboard-master.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block changing-part %}
+
+    <section class="section"></section>
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">Historia clinica</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Escriba en el campo toda la informacion clinica de su paciente.</h6>
+        <p></p>
+
+        <form action="{%url 'add-history' id %}" method="POST" >{% csrf_token %}
+
+            <div class="row mb-3">
+                <!-- <label for="HistoriaClinica" class="col-md-4 col-lg-3 col-form-label">{{historia_form.historia.label_tag}}</label>
+                <div class="col-md-8 col-lg-9">
+                {{historia_form.historia.errors}}
+                {% render_field historia_form.historia.nombre %}
+                </div> -->
+                {{historia_form.as_p}}
+                
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar historia clinica</button>
+            </div>
+        </form>
+
+
+        </div>
+    </div><!-- End Card with titles, buttons, and links -->
+</section>
+
+
+
+{% endblock %}  

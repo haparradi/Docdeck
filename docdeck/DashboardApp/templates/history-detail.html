@@ -1,0 +1,41 @@
+{% extends 'dashboard-master.html' %}
+
+{% load static %}
+
+{% block changing-part %}
+
+<main id="main" class="main">
+    
+    <div class="pagetitle">
+      <h1>Historia Clinica</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+          <li class="breadcrumb-item active"><a href="{% url 'index' %}">Dashboard</a></li>
+          <li class="breadcrumb-item active"><a href="{% url 'patients' %}">Pacientes</a></li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+<section class="section"></section>
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">Historia Clinica de:</h5>
+        <!-- <h6 class="card-subtitle mb-2 text-muted">En esta seccion puede Agregar, editar o eliminar pacientes.</h6>
+        <p></p> -->
+        <div>   
+    
+            <h5>{{history}}</h5>
+
+            <p>{{history.historia}}</p>
+
+        </div>
+        <p class="text-center"><a href="{% url 'patients' %}" class="btn btn-primary">Volver a atras</a></p>
+        <p></p>
+        <p></p>
+        </div>
+    </div><!-- End Card with titles, buttons, and links -->
+</section>
+
+
+{% endblock %}  

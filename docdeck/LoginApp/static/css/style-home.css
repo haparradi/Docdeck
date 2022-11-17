@@ -436,10 +436,10 @@ h6 {
   line-height: 0;
   width: auto;
   height: auto;
-  background: rgba(255, 255, 255, 0.2);
+  background: #11132a;
   border-radius: 50px;
   transition: 0.3s;
-  color: rgba(255, 255, 255, 0.5);
+  color: #f9df00;
   width: 54px;
   height: 54px;
   display: flex;
@@ -449,8 +449,8 @@ h6 {
 
 #hero .carousel-control-next-icon:hover,
 #hero .carousel-control-prev-icon:hover {
-  background: rgba(255, 255, 255, 0.3);
-  color: rgba(255, 255, 255, 0.8);
+  background: #f9df00;
+  color: #11132a;
 }
 
 #hero .carousel-indicators li {
@@ -467,27 +467,28 @@ h6 {
 
 #hero .carousel-indicators li.active {
   opacity: 1;
-  background: #d9232d;
+  background: #f9df00;
 }
 
 #hero .btn-get-started {
   font-family: "Raleway", sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 1px;
   display: inline-block;
   padding: 14px 32px;
   border-radius: 4px;
   transition: 0.5s;
   line-height: 1;
-  color: #fff;
+  color: #11132a;
   -webkit-animation-delay: 0.8s;
   animation-delay: 0.8s;
-  background: #d9232d;
+  background: #f9df00;
 }
 
 #hero .btn-get-started:hover {
-  background: #df3740;
+  background: #11132a;
+  color: #ffff;
 }
 
 @media (max-width: 992px) {
