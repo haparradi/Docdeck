@@ -12,22 +12,22 @@ from PacientesApp.forms import PatientForm, HistoriaForm, DataTreinoForm
 @login_required
 def index(request):
     return render(request, 'index.html')
-
+@login_required
 def profile(request):
     user_form = UpdateUserForm(instance=request.user)
     profile_form = UpdateProfileForm(instance=request.user.profile)
     password_form = ChangePasswordForm(request.user)
     return render(request, 'users-profile.html', {'user_form':user_form, 'profile_form':profile_form, 'password_form':password_form})
-
+@login_required
 def records(request):
     return render(request, 'records.html')
 
-class PatientsList(ListView):
+class PatientsList(ListView, LoginRequiredMixin):
     model = Paciente
     template_name = 'patients.html'
     context_object_name = 'patients'
     
-    
+@login_required    
 def add_patient(request):
     if request.method == 'POST':
         patient_form = PatientForm(request.POST)
@@ -54,7 +54,7 @@ def add_patient(request):
 #     model = 'Paciente'
 #     template_name = 'patient-detail.html'
 #     context_object_name = 'patient'
-
+@login_required
 def patient_detail(request, id): 
     if request.method == 'GET':
         patient = Paciente.objects.get(id=id)
@@ -63,7 +63,7 @@ def patient_detail(request, id):
             return render(request, 'patient-detail.html', {'historia':historia})
         except:
             return render(request, 'patient-detail.html', {'patient':patient})
-    
+@login_required
 def add_history(request, id):
     if request.method == 'POST':
         historia_form = HistoriaForm(request.POST)
