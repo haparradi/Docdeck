@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -58,9 +58,11 @@ def add_patient(request):
 def patient_detail(request, id): 
     if request.method == 'GET':
         patient = Paciente.objects.get(id=id)
-        historias = HistoriaClinica.objects.filter(paciente_id=id)
-        
-        return render(request, 'patient-detail.html', {'patient':patient, 'historias':historias})
+        try:
+            historia = get_object_or_404(HistoriaClinica, pk=id)
+            return render(request, 'patient-detail.html', {'historia':historia})
+        except:
+            return render(request, 'patient-detail.html', {'patient':patient})
     
 def add_history(request, id):
     if request.method == 'POST':
