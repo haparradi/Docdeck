@@ -1,0 +1,28 @@
+{% extends 'dashboard-master.html' %}
+
+
+
+{% block changing-part %}
+
+
+
+{% for historia in historias %}
+
+    {% if historia %}
+        <p>{{historia}}</p>
+        <a href="{% url 'history-detail' historia.id %}">Ver historia clinica</a>
+    {% else %}
+        <p>{{patient}}</p>
+        <a href="{% url 'add-history' patient.id %}">Agregar Historia Clinica</a>
+    {% endif %}
+{% endfor %}
+
+
+    
+    
+        
+  
+        
+    
+{% endblock %}
+    

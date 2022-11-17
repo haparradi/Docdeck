@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from PacientesApp.models import Paciente, HistoriaClinica
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView
@@ -49,7 +50,33 @@ def add_patient(request):
         return render(request, 'add-patient.html', {'patient_form':patient_form, 'date_form':date_form})
     
     
-class PatientDetail(DetailView):
-    model = 'Paciente'
-    template_name = 'patient-detail.html'
-    context_object_name = 'patient'
+# class PatientDetail(DetailView):
+#     model = 'Paciente'
+#     template_name = 'patient-detail.html'
+#     context_object_name = 'patient'
+
+def patient_detail(request, id): 
+    if request.method == 'GET':
+        patient = Paciente.objects.get(id=id)
+        historias = HistoriaClinica.objects.filter(paciente_id=id)
+        
+        return render(request, 'patient-detail.html', {'patient':patient, 'historias':historias})
+    
+def add_history(request, id):
+    if request.method == 'POST':
+        historia_form = HistoriaForm(request.POST)
+        if historia_form.is_valid():
+            data = historia_form.cleaned_data
+            historia = HistoriaClinica(paciente_id = id, historia=data['historia'])
+            historia.save()
+            return redirect('patients')
+        return render(request, 'add-history.html', {'historia_form':historia, 'id':id})
+    else:
+        historia_form = HistoriaForm()
+        return render(request, 'add-history.html', {'historia_form':historia_form, 'id':id})
+    
+    
+class HistoryDetail(DetailView, LoginRequiredMixin):
+    model = HistoriaClinica
+    template_name = 'history-detail.html'
+    context_object_name = 'history'

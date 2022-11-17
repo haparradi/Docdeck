@@ -21,6 +21,9 @@ class DataTreinoForm(forms.ModelForm):
 
 
 class HistoriaForm(forms.ModelForm):
+    historia = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
     class Meta:
         model = HistoriaClinica
         fields = ['historia']
+        labels = {'historia':'Historia Clinica'}
+        

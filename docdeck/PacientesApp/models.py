@@ -27,4 +27,7 @@ class Paciente(models.Model):
 class HistoriaClinica(models.Model):
     historia = models.TextField(blank=True, null=True)
     pub_date = models.DateTimeField(blank=True, default=timezone.now)
-    paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE)
+    paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE, default=None,)
+    
+    def __str__(self):
+        return f'{self.paciente}'

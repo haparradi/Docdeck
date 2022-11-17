@@ -23,4 +23,7 @@ urlpatterns = [
     path('Records/', views.records, name='records'),
     path('patients/', views.PatientsList.as_view(), name='patients'),
     path('add-patient/', views.add_patient, name='add-patient'),
+    path('patient/<int:id>/', views.patient_detail, name='patient-detail'),
+    path('add-history/<int:id>/', views.add_history, name='add-history'),
+    path('history-details/<pk>/', views.HistoryDetail.as_view(), name='history-detail')
 ]
