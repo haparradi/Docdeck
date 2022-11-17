@@ -4,7 +4,7 @@
 
 {% block changing-part %}
 
-    <form action="{%url 'add-patient'%}" method="POST" >{% csrf_token %}
+    <form action="{%url 'add-patient' user.id %}" method="POST" >{% csrf_token %}
 
         <div class="row mb-3">
             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">{{patient_form.nombre.label_tag}}</label>

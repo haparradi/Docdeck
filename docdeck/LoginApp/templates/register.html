@@ -51,7 +51,7 @@
                         <label class="form-label">{{ form.username.label_tag }}</label>
                         <div class="input-group has-validation">
                             {{ form.username.errors }}
-                            {% render_field form.username hx-post="/home/check_username/" hx-target="#username-err" hx-swap="outerhtml" hx-trigger="keyup" class="form-control" %}
+                            {% render_field form.username hx-post="/home/check_username/" hx-target="#username-err" hx-swap="outerhtml" hx-trigger="keyup delay:500ms" class="form-control" %}
                         
 
                         </div>

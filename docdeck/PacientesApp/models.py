@@ -1,3 +1,4 @@
+from LoginApp.models import Doctor
 from django.db import models
 from django.utils import timezone
 ESTADO_CIVIL_CHOICE = [
@@ -12,13 +13,14 @@ ESTADO_CIVIL_CHOICE = [
 class Paciente(models.Model):
     nombre = models.CharField(max_length=20)
     apellido = models.CharField(max_length=20)
-    documento = models.IntegerField()
-    domicilio = models.CharField(max_length=20)
-    telefono = models.IntegerField()
+    documento = models.CharField(null=True, blank=True, max_length=20)
+    domicilio = models.CharField(null=True, blank=True, max_length=20)
+    telefono = models.CharField(null=True, blank=True, max_length=20)
     email = models.EmailField()
     estado_civil = models.CharField(max_length=30, choices=ESTADO_CIVIL_CHOICE)
     religion = models.CharField(max_length=20)
     fecha_de_nacimiento = models.DateField()
+    doctor = models.ManyToManyField(Doctor, related_name='paciente')
     
     def __str__(self):
         return f'{self.nombre} {self.apellido}'
@@ -31,3 +33,12 @@ class HistoriaClinica(models.Model):
     
     def __str__(self):
         return f'{self.paciente}'
+    
+class Consulta(models.Model):
+    nombre_apellido = models.CharField(max_length=40)
+    email = models.EmailField()
+    consulta = models.TextField()
+    read = models.BooleanField(default=False)
+    pub_date = models.DateTimeField(default=timezone.now)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    

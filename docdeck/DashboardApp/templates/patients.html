@@ -5,9 +5,9 @@
 {% block changing-part %}
 <div>
     
-    {% for patient in patients %}
+    {% for patient in patients %}{% csrf_token %}
        <li><a href="{% url 'patient-detail' patient.id%}"> {{patient}} </a></li>
     {% endfor %}
-    <a class="btn btn-primary btn-sm" href="{% url 'add-patient' %}">Add Patient</a>
+    <a class="btn btn-primary btn-sm" href="{% url 'add-patient' user.id %}">Add Patient</a>
 </div>
 {% endblock %}  

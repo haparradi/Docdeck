@@ -28,7 +28,7 @@ class PatientsList(ListView, LoginRequiredMixin):
     context_object_name = 'patients'
     
 @login_required    
-def add_patient(request):
+def add_patient(request, id):
     if request.method == 'POST':
         patient_form = PatientForm(request.POST)
         date_form = DataTreinoForm(request.POST)
@@ -38,8 +38,10 @@ def add_patient(request):
             date_data = date_form.cleaned_data
             paciente = Paciente(nombre=patient_data['nombre'],apellido=patient_data['apellido'],documento=patient_data['documento'], domicilio=patient_data['domicilio'],telefono=patient_data['telefono'],email=patient_data['email'],estado_civil=patient_data['estado_civil'],religion=patient_data['religion'])
             paciente.fecha_de_nacimiento= date_data['fecha_de_nacimiento']
-            # historia = Paciente.historia_clinica(historia=historia_data['historia'])
             paciente.save()
+            paciente.doctor.add(request.user)
+            paciente.save()
+            # historia = Paciente.historia_clinica(historia=historia_data['historia'])
             # historia.save()
             return redirect('index')
         return PatientsList.as_view()
