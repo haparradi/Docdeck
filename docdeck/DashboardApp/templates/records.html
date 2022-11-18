@@ -28,11 +28,10 @@
             {% if records|length > 0 %}
     
                 {% for record in records %}
-                
-                    {% if record.historia %}
-                        <li><a href="{% url ''%}">{{record}}</a></li>
+                    {% if record.record %}
+                        <li><a href="{% url 'history-detail' record.record.id %}">{{record}}</a></li>
                     {% else %}
-                        <li>{{record}}</li>
+                        <li>{{record}} entro por else</li>
                     {% endif %}
                     
                 {% endfor %}

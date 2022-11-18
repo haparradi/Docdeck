@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from PacientesApp.models import Paciente, HistoriaClinica
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView
 from LoginApp.forms import UpdateUserForm, UpdateProfileForm, ChangePasswordForm
 from PacientesApp.forms import PatientForm, HistoriaForm, DataTreinoForm
 
@@ -77,6 +77,7 @@ def patient_detail(request, id):
             return render(request, 'patient-detail.html', {'historia':historia})
         except:
             return render(request, 'patient-detail.html', {'patient':patient})
+        
 @login_required
 def add_history(request, id):
     paciente = Paciente.objects.get(id=id)
@@ -97,3 +98,10 @@ class HistoryDetail(DetailView, LoginRequiredMixin):
     model = HistoriaClinica
     template_name = 'history-detail.html'
     context_object_name = 'history'
+    
+    
+class HistoryEdit(UpdateView):
+    model = HistoriaClinica
+    form_class = HistoriaForm
+    template_name = 'update-history.html'
+    success_url = reverse_lazy('records')

@@ -30,7 +30,8 @@
             <p>{{history.historia}}</p>
 
         </div>
-        <p class="text-center"><a href="{% url 'patients' %}" class="btn btn-primary">Volver a atras</a></p>
+
+        <p class="text-center"><a href="{% url 'update-history' history.id %}" class="btn btn-primary">Editar</a> <a href="{% url 'patients' %}" class="btn btn-primary">Volver a atras</a></p>
         <p></p>
         <p></p>
         </div>

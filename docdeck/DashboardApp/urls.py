@@ -25,5 +25,6 @@ urlpatterns = [
     path('add-patient/<int:id>/', views.add_patient, name='add-patient'),
     path('patient/<int:id>/', views.patient_detail, name='patient-detail'),
     path('add-history/<int:id>/', views.add_history, name='add-history'),
-    path('history-details/<pk>/', views.HistoryDetail.as_view(), name='history-detail')
+    path('history-details/<pk>/', views.HistoryDetail.as_view(), name='history-detail'),
+    path('update-history/<pk>/', views.HistoryEdit.as_view(), name='update-history'),
 ]
