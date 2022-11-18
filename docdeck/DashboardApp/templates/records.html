@@ -3,5 +3,48 @@
 {% load static %}
 
 {% block changing-part %}
-
+    
+    
+    <main id="main" class="main">
+    
+        <div class="pagetitle">
+          <h1>Records</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{% url 'index' %}">Dashboard</a></li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+    
+    <section class="section"></section>
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">Records:</h5>
+        <!-- <h6 class="card-subtitle mb-2 text-muted">En esta seccion...</h6>
+        <p></p> -->
+        <div>
+        
+            {% if records|length > 0 %}
+    
+                {% for record in records %}
+                
+                    {% if record.historia %}
+                        <li><a href="{% url ''%}">{{record}}</a></li>
+                    {% else %}
+                        <li>{{record}}</li>
+                    {% endif %}
+                    
+                {% endfor %}
+            {% else %}        
+            <h4>No hay Pacientes</h4>
+    
+        </div>
+        <p></p>
+        <p></p>
+        <p class="card-text"><a class="btn btn-primary" href="{% url 'patients' %}">Volver a pacientes</a></p>
+        </div>
+        {% endif %}
+    </div><!-- End Card with titles, buttons, and links -->
+    </section>
 {% endblock %}  

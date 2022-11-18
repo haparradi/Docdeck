@@ -18,14 +18,26 @@ def profile(request):
     profile_form = UpdateProfileForm(instance=request.user.profile)
     password_form = ChangePasswordForm(request.user)
     return render(request, 'users-profile.html', {'user_form':user_form, 'profile_form':profile_form, 'password_form':password_form})
-@login_required
-def records(request):
-    return render(request, 'records.html')
+
+
+class HistoryView(ListView, LoginRequiredMixin):
+    model = HistoriaClinica
+    template_name = 'records.html'
+    context_object_name = 'records'
+    def get_queryset(self):
+        user = self.request.user
+        return user.paciente.all()
+        
 
 class PatientsList(ListView, LoginRequiredMixin):
     model = Paciente
     template_name = 'patients.html'
     context_object_name = 'patients'
+    
+    def get_queryset(self):
+        user = self.request.user
+        return user.paciente.all()
+    
     
 @login_required    
 def add_patient(request, id):
@@ -67,6 +79,7 @@ def patient_detail(request, id):
             return render(request, 'patient-detail.html', {'patient':patient})
 @login_required
 def add_history(request, id):
+    paciente = Paciente.objects.get(id=id)
     if request.method == 'POST':
         historia_form = HistoriaForm(request.POST)
         if historia_form.is_valid():
@@ -74,10 +87,10 @@ def add_history(request, id):
             historia = HistoriaClinica(paciente_id = id, historia=data['historia'])
             historia.save()
             return redirect('patients')
-        return render(request, 'add-history.html', {'historia_form':historia, 'id':id})
+        return render(request, 'add-history.html', {'historia_form':historia_form, 'id':id})
     else:
         historia_form = HistoriaForm()
-        return render(request, 'add-history.html', {'historia_form':historia_form, 'id':id})
+        return render(request, 'add-history.html', {'historia_form':historia_form, 'id':id, 'paciente':paciente})
     
     
 class HistoryDetail(DetailView, LoginRequiredMixin):
