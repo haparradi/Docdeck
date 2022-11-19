@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from PacientesApp.models import Paciente, HistoriaClinica
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import FormView, UpdateView
+from django.views.generic.edit import FormView, UpdateView, DeleteView
 from LoginApp.forms import UpdateUserForm, UpdateProfileForm, ChangePasswordForm
 from PacientesApp.forms import PatientForm, HistoriaForm, DataTreinoForm
 
@@ -105,3 +105,15 @@ class HistoryEdit(UpdateView):
     form_class = HistoriaForm
     template_name = 'update-history.html'
     success_url = reverse_lazy('records')
+    
+# class DeletePatient(DeleteView):
+#     model = Paciente
+#     template_name = 'delete-patient.html'
+#     success_url = reverse_lazy('patients')
+    
+def delete_patient(request, pk):
+    request.user.paciente.remove(pk)
+    
+    patients = request.user.paciente.all()
+    
+    return render(request, 'patients.html', {'patients':patients})

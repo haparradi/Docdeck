@@ -24,20 +24,20 @@
         <!-- <h6 class="card-subtitle mb-2 text-muted">En esta seccion...</h6>
         <p></p> -->
         <div>
+            <ul class="list-group col-6" >
+                {% if records|length > 0 %}
         
-            {% if records|length > 0 %}
-    
-                {% for record in records %}
-                    {% if record.record %}
-                        <li><a href="{% url 'history-detail' record.record.id %}">{{record}}</a></li>
-                    {% else %}
-                        <li>{{record}} entro por else</li>
-                    {% endif %}
-                    
-                {% endfor %}
-            {% else %}        
-            <h4>No hay Pacientes</h4>
-    
+                    {% for record in records %}
+                        {% if record.record %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center"><a href="{% url 'history-detail' record.record.id %}">{{record}}</a></li>
+                        {% else %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">{{record}} <a href="{%url 'add-history' record.id %}"> Agregar Historia </a></li>
+                        {% endif %}
+                        
+                    {% endfor %}
+                {% else %}        
+                <h4>No hay Pacientes</h4>
+            </ul>
         </div>
         <p></p>
         <p></p>

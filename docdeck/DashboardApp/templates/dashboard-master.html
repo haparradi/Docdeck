@@ -34,7 +34,7 @@
   
   </head>
 
-<body>
+<body id="body">
         
   <!-- ======= Header ======= -->
 
@@ -341,11 +341,13 @@
     </ul>
     
   </aside><!-- End Sidebar-->
-
-{% block changing-part %}
-    
-{% endblock %}    
-  
+  <div class="align-center col-10 offset-1"></div>
+    <div id="changes">
+      {% block changing-part %}
+          
+      {% endblock %}    
+    </div>
+  </div>
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -370,6 +372,10 @@
 
   <!-- Template Main JS File -->
   <!-- <script src="/static/js/main.js"></script> -->
-
+  <script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+    </script>
 </body>
 </html>
