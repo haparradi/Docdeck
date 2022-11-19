@@ -1,5 +1,5 @@
 {% extends 'master.html' %}
-
+{% load widget_tweaks %}
 {% load static %}
 
 {% block changing-body %}
@@ -55,27 +55,41 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="{% url 'contact' %}" method="POST" role="form" enctype="multipart/form-data" >{% csrf_token %}
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> {{form.nombre_apellido.label_tag}} </label>
+                  {{form.nombre_apellido.errors}}
+                  {% render_field form.nombre_apellido %}
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> {{form.email.label_tag}} </label>
+                  {{form.email.errors}}
+                  {% render_field form.email %}
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> {{form.doctor.label_tag}} </label>
+                  {{form.doctor.errors}}
+                  {% render_field form.doctor %}
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <label for="fullName" class="col-md-4 col-lg-3 col-form-label"> {{form.consulta.label_tag}} </label>
+                  {{form.consulta.errors}}
+                  {% render_field form.consulta %}
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
+                
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div class="sent-message text-center">
+                {% if response %}
+                  {{response}}
+                {% else %}                  
+                
+                <div class="text-center"><button type="submit" formmethod="post">Send Message</button></div>
+                {% endif %}
+                  </div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
 
           </div>

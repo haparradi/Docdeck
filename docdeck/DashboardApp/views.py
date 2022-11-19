@@ -11,13 +11,16 @@ from PacientesApp.forms import PatientForm, HistoriaForm, DataTreinoForm
 # Create your views here.
 @login_required
 def index(request):
-    return render(request, 'index.html')
+    consultas = request.user.consulta.all()
+               
+    return render(request, 'index.html', {'consultas':consultas})
 @login_required
 def profile(request):
+    consultas = request.user.consulta.all()
     user_form = UpdateUserForm(instance=request.user)
     profile_form = UpdateProfileForm(instance=request.user.profile)
     password_form = ChangePasswordForm(request.user)
-    return render(request, 'users-profile.html', {'user_form':user_form, 'profile_form':profile_form, 'password_form':password_form})
+    return render(request, 'users-profile.html', {'user_form':user_form, 'profile_form':profile_form, 'password_form':password_form,'consultas':consultas})
 
 
 class HistoryView(ListView, LoginRequiredMixin):
