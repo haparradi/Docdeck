@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.urls import reverse_lazy
+
+from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from PacientesApp.models import Paciente, HistoriaClinica
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView, UpdateView, DeleteView
@@ -28,8 +31,11 @@ class HistoryView(ListView, LoginRequiredMixin):
     template_name = 'records.html'
     context_object_name = 'records'
     def get_queryset(self):
-        user = self.request.user
-        return user.paciente.all()
+        if self.request.user.is_superuser:
+            return Paciente.objects.all()
+        else:
+            user = self.request.user
+            return user.paciente.all()
         
 
 class PatientsList(ListView, LoginRequiredMixin):
@@ -38,11 +44,14 @@ class PatientsList(ListView, LoginRequiredMixin):
     context_object_name = 'patients'
     
     def get_queryset(self):
-        user = self.request.user
-        return user.paciente.all()
+        if self.request.user.is_superuser: 
+            return Paciente.objects.all()
+        else:
+            user = self.request.user
+            return user.paciente.all()
     
     
-@login_required    
+@login_required
 def add_patient(request, id):
     if request.method == 'POST':
         patient_form = PatientForm(request.POST)
@@ -103,7 +112,7 @@ class HistoryDetail(DetailView, LoginRequiredMixin):
     context_object_name = 'history'
     
     
-class HistoryEdit(UpdateView):
+class HistoryEdit(UpdateView, LoginRequiredMixin):
     model = HistoriaClinica
     form_class = HistoriaForm
     template_name = 'update-history.html'
@@ -113,10 +122,17 @@ class HistoryEdit(UpdateView):
 #     model = Paciente
 #     template_name = 'delete-patient.html'
 #     success_url = reverse_lazy('patients')
-    
+@login_required
+@require_http_methods(['DELETE'])
 def delete_patient(request, pk):
-    request.user.paciente.remove(pk)
-    
-    patients = request.user.paciente.all()
+    if request.user.is_superuser:
+        patient = Paciente.objects.get(pk=pk)
+        patient.delete()
+        patients = Paciente.objects.all()
+    else:
+        patient = request.user.paciente.get(pk = pk)
+        patient.delete()
+        patients = request.user.paciente.all()
     
     return render(request, 'patients.html', {'patients':patients})
+
