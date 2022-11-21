@@ -5,7 +5,7 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from PacientesApp.models import Paciente, HistoriaClinica
+from PacientesApp.models import Paciente, HistoriaClinica, Consulta
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView, UpdateView, DeleteView
 from LoginApp.forms import UpdateUserForm, UpdateProfileForm, ChangePasswordForm
@@ -136,3 +136,35 @@ def delete_patient(request, pk):
     
     return render(request, 'patients.html', {'patients':patients})
 
+@login_required
+def search_patient(request):
+    search_text = request.POST.get('search')
+
+    # look up all films that contain the text
+    # exclude user films
+    if request.user.is_superuser:
+        results = Paciente.objects.filter(nombre__icontains=search_text)
+        context = {"results": results}
+    else:
+        results = request.user.paciente.filter(nombre__icontains=search_text)
+        context = {"results": results}
+    return render(request, 'partials/search-results.html', context)
+
+class ConsultasListView(ListView, LoginRequiredMixin):
+    model = Consulta
+    template_name = 'consultas.html'
+    context_object_name = 'consultas'
+    
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Consulta.objects.all()
+        else:
+            user = self.request.user
+            return user.consulta.all()
+        
+@login_required
+def consulta_detail(request, pk):
+    consulta = Consulta.objects.get(pk=pk)
+    consulta.read_constulta()
+    return render(request, 'consulta-detail.html', {'consulta':consulta})
+    

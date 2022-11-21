@@ -28,4 +28,12 @@ urlpatterns = [
     path('history-details/<pk>/', views.HistoryDetail.as_view(), name='history-detail'),
     path('update-history/<pk>/', views.HistoryEdit.as_view(), name='update-history'),
     path('delete-patient/<pk>/', views.delete_patient, name='delete-patient'),
+    path('consultas/', views.ConsultasListView.as_view(), name='consultas'),
+    path('consulta-detail/<pk>/', views.consulta_detail, name='consulta-detail'),
 ]
+
+htmx_urlpatterns = [
+    path('search-patient', views.search_patient, name='search-patient')
+]
+
+urlpatterns+=htmx_urlpatterns
