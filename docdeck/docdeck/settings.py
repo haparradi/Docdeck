@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'DashboardApp',
     'LoginApp',
     'PacientesApp',
+    'BlogApp',
     'widget_tweaks',
     'django_extensions',
     'phone_field',
