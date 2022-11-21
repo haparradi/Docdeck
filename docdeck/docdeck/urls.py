@@ -24,4 +24,5 @@ urlpatterns = [
     path('', views.home, name='go_to_home'),
     path('home/', include('LoginApp.urls')),
     path('DashboardApp/', include('DashboardApp.urls')),
+    # path('Pacientes/', include('PacientesApp.urls')),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -4,28 +4,43 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from PacientesApp.models import Paciente, HistoriaClinica
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView, DeleteView
 from LoginApp.forms import UpdateUserForm, UpdateProfileForm, ChangePasswordForm
 from PacientesApp.forms import PatientForm, HistoriaForm, DataTreinoForm
 
 # Create your views here.
 @login_required
 def index(request):
-    return render(request, 'index.html')
+    consultas = request.user.consulta.all()
+               
+    return render(request, 'index.html', {'consultas':consultas})
 @login_required
 def profile(request):
+    consultas = request.user.consulta.all()
     user_form = UpdateUserForm(instance=request.user)
     profile_form = UpdateProfileForm(instance=request.user.profile)
     password_form = ChangePasswordForm(request.user)
-    return render(request, 'users-profile.html', {'user_form':user_form, 'profile_form':profile_form, 'password_form':password_form})
-@login_required
-def records(request):
-    return render(request, 'records.html')
+    return render(request, 'users-profile.html', {'user_form':user_form, 'profile_form':profile_form, 'password_form':password_form,'consultas':consultas})
+
+
+class HistoryView(ListView, LoginRequiredMixin):
+    model = HistoriaClinica
+    template_name = 'records.html'
+    context_object_name = 'records'
+    def get_queryset(self):
+        user = self.request.user
+        return user.paciente.all()
+        
 
 class PatientsList(ListView, LoginRequiredMixin):
     model = Paciente
     template_name = 'patients.html'
     context_object_name = 'patients'
+    
+    def get_queryset(self):
+        user = self.request.user
+        return user.paciente.all()
+    
     
 @login_required    
 def add_patient(request, id):
@@ -65,8 +80,10 @@ def patient_detail(request, id):
             return render(request, 'patient-detail.html', {'historia':historia})
         except:
             return render(request, 'patient-detail.html', {'patient':patient})
+        
 @login_required
 def add_history(request, id):
+    paciente = Paciente.objects.get(id=id)
     if request.method == 'POST':
         historia_form = HistoriaForm(request.POST)
         if historia_form.is_valid():
@@ -74,13 +91,32 @@ def add_history(request, id):
             historia = HistoriaClinica(paciente_id = id, historia=data['historia'])
             historia.save()
             return redirect('patients')
-        return render(request, 'add-history.html', {'historia_form':historia, 'id':id})
+        return render(request, 'add-history.html', {'historia_form':historia_form, 'id':id})
     else:
         historia_form = HistoriaForm()
-        return render(request, 'add-history.html', {'historia_form':historia_form, 'id':id})
+        return render(request, 'add-history.html', {'historia_form':historia_form, 'id':id, 'paciente':paciente})
     
     
 class HistoryDetail(DetailView, LoginRequiredMixin):
     model = HistoriaClinica
     template_name = 'history-detail.html'
     context_object_name = 'history'
+    
+    
+class HistoryEdit(UpdateView):
+    model = HistoriaClinica
+    form_class = HistoriaForm
+    template_name = 'update-history.html'
+    success_url = reverse_lazy('records')
+    
+# class DeletePatient(DeleteView):
+#     model = Paciente
+#     template_name = 'delete-patient.html'
+#     success_url = reverse_lazy('patients')
+    
+def delete_patient(request, pk):
+    request.user.paciente.remove(pk)
+    
+    patients = request.user.paciente.all()
+    
+    return render(request, 'patients.html', {'patients':patients})

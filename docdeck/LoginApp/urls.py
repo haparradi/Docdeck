@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from PacientesApp.views import enviar_consulta
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -27,7 +28,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('services/', views.services, name='services'),
     path('about/', views.about, name='about'),
-    path('contact/', views.contact, name='contact'),
+    path('contact/', enviar_consulta, name='contact'),
     path('team/', views.team, name='team'),
     path('blog/', views.blog, name='blog'),
 ]

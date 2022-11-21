@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block changing-part %}
+<script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
 
 <main id="main" class="main">
     
@@ -20,14 +21,24 @@
 <div class="card">
     <div class="card-body">
     <h5 class="card-title">Pacientes:</h5>
-    <!-- <h6 class="card-subtitle mb-2 text-muted">En esta seccion...</h6>
-    <p></p> -->
-    <div>
-    
+    <h6 class="card-subtitle mb-2 text-muted">Seleccione el nombre del paciente para ver su informacion.</h6>
+    <h6 class="card-subtitle mb-2 text-muted">ADVERTENCIA: Si presiona el boton rojo se eliminara el paciente y su informacion ¡esta accion no se puede deshacer!.</h6>
+    <p></p>
+    <div id="patient-list">
+      <ul class="list-group col-4" >
         {% for patient in patients %}{% csrf_token %}
-           <li><a href="{% url 'patient-detail' patient.id%}"> {{patient}} </a></li>
+           <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'patient-detail' patient.id%}"> {{patient}} </a> 
+            
+            <i class="btn btn-danger btn-sm bi bi-trash" 
+            hx-delete="{% url 'delete-patient' patient.pk %}"
+            hx-target="#body"
+            hx-confirm="Esta seguro"
+            title="DeletePatient"></i>
+            </a>
+          </li>
         {% endfor %}
-
+      </ul>
     </div>
     <p></p>
     <p></p>

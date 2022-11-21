@@ -29,7 +29,7 @@ class Paciente(models.Model):
 class HistoriaClinica(models.Model):
     historia = models.TextField(blank=True, null=True)
     pub_date = models.DateTimeField(blank=True, default=timezone.now)
-    paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE, default=None,)
+    paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE, default=None, related_name='record')
     
     def __str__(self):
         return f'{self.paciente}'
@@ -37,8 +37,10 @@ class HistoriaClinica(models.Model):
 class Consulta(models.Model):
     nombre_apellido = models.CharField(max_length=40)
     email = models.EmailField()
-    consulta = models.TextField()
-    read = models.BooleanField(default=False)
+    consulta = models.CharField(max_length=255)
+    read = models.BooleanField(null=True, default=False)
     pub_date = models.DateTimeField(default=timezone.now)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='consulta')
+    def __str__(self):
+        return f'{self.nombre_apellido}'
     

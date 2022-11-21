@@ -20,10 +20,12 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('profile/', views.profile, name='profile'),
-    path('Records/', views.records, name='records'),
+    path('Records/', views.HistoryView.as_view(), name='records'),
     path('patients/', views.PatientsList.as_view(), name='patients'),
     path('add-patient/<int:id>/', views.add_patient, name='add-patient'),
     path('patient/<int:id>/', views.patient_detail, name='patient-detail'),
     path('add-history/<int:id>/', views.add_history, name='add-history'),
-    path('history-details/<pk>/', views.HistoryDetail.as_view(), name='history-detail')
+    path('history-details/<pk>/', views.HistoryDetail.as_view(), name='history-detail'),
+    path('update-history/<pk>/', views.HistoryEdit.as_view(), name='update-history'),
+    path('delete-patient/<pk>/', views.delete_patient, name='delete-patient'),
 ]

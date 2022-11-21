@@ -12,7 +12,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
           <li class="breadcrumb-item active"><a href="{% url 'index' %}">Dashboard</a></li>
-          <li class="breadcrumb-item active"><a href="{% url 'patients' %}">Pacientes</a></li>
+          <li class="breadcrumb-item active"><a href="{% url 'records' %}">Historias Clinicas</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -30,7 +30,8 @@
             <p>{{history.historia}}</p>
 
         </div>
-        <p class="text-center"><a href="{% url 'patients' %}" class="btn btn-primary">Volver a atras</a></p>
+
+        <p class="text-center"><a href="{% url 'update-history' history.id %}" class="btn btn-primary">Editar</a> <a href="{% url 'records' %}" class="btn btn-primary">Volver a atras</a></p>
         <p></p>
         <p></p>
         </div>

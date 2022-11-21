@@ -34,7 +34,7 @@
   
   </head>
 
-<body>
+<body id="body">
         
   <!-- ======= Header ======= -->
 
@@ -69,42 +69,50 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
+            <span class="badge bg-primary badge-number">{{user.consulta.all|length}}</span>
 
           </a><!-- End Notification Icon -->
           
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
+              You have {{user.consulta.all|length}} notifications
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
             
+            {% for consulta in user.consulta.all %}
+              
+              {% if not consulta.read %}
+            
             <li class="notification-item">
               <i class="bi bi-exclamation-circle text-warning"></i>
               <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
+                    <h4>Consulta nueva</h4>
+                    <p>{{consulta}}</p>
+                    <p>{{consulta.pub_date}}</p>
+                </div>
             </li>
+                
+                {% endif %}
+                  
+                
+              <li>
+                  <hr class="dropdown-divider">
+                </li>
+              {% endfor %}
             
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            
-            <li class="notification-item">
+            <!-- <li class="notification-item">
               <i class="bi bi-x-circle text-danger"></i>
               <div>
                 <h4>Atque rerum nesciunt</h4>
                 <p>Quae dolorem earum veritatis oditseno</p>
                 <p>1 hr. ago</p>
               </div>
-            </li>
+            </li> -->
             
-            <li>
+            <!-- <li>
               <hr class="dropdown-divider">
             </li>
             
@@ -115,9 +123,9 @@
                 <p>Quae dolorem earum veritatis oditseno</p>
                 <p>2 hrs. ago</p>
               </div>
-            </li>
+            </li> -->
             
-            <li>
+            <!-- <li>
               <hr class="dropdown-divider">
             </li>
 
@@ -132,7 +140,7 @@
             
             <li>
               <hr class="dropdown-divider">
-            </li>
+            </li> -->
             <li class="dropdown-footer">
               <a href="#">Show all notifications</a>
             </li>
@@ -341,11 +349,13 @@
     </ul>
     
   </aside><!-- End Sidebar-->
-
-{% block changing-part %}
-    
-{% endblock %}    
-  
+  <div class="align-center col-10 offset-1"></div>
+    <div id="changes">
+      {% block changing-part %}
+          
+      {% endblock %}    
+    </div>
+  </div>
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -370,6 +380,10 @@
 
   <!-- Template Main JS File -->
   <!-- <script src="/static/js/main.js"></script> -->
-
+  <script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+    </script>
 </body>
 </html>

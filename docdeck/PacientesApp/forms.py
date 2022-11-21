@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.admin.widgets import AdminDateWidget   
-from .models import Paciente, HistoriaClinica
+from .models import Paciente, HistoriaClinica, Consulta
 
 class PatientForm(forms.ModelForm):
     class Meta:
@@ -29,7 +29,9 @@ class HistoriaForm(forms.ModelForm):
         
 class ConsultaForm(forms.ModelForm):
     consulta = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
+    
     class Meta:
-        fields = ['consulta']
+        model = Consulta
+        fields = ['consulta','nombre_apellido','email','doctor']
         
         
