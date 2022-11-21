@@ -29,3 +29,9 @@ urlpatterns = [
     path('update-history/<pk>/', views.HistoryEdit.as_view(), name='update-history'),
     path('delete-patient/<pk>/', views.delete_patient, name='delete-patient'),
 ]
+
+htmx_urlpatterns = [
+    path('search-patient/', views.search_patient, name='search-patient'),
+]
+
+urlpatterns += htmx_urlpatterns

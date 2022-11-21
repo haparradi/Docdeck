@@ -31,6 +31,8 @@
   <link href="/static/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="/static/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="/static/vendor/simple-datatables/style.css" rel="stylesheet">
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
   
   </head>
 
@@ -49,12 +51,20 @@
       <!-- <i class="bi bi-list toggle-sidebar-btn"></i> -->
     </div><!-- End Logo -->
     
-    <div class="search-bar">
+    <div class="search-bar">{% csrf_token %}
       <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <input type="text" name="search" placeholder="Patient name..." title="Enter search keyword"
+        hx-post="{% url 'search-patient' %}"
+        hx-target="#results"
+        hx-trigger="keyup changed delay:500ms"
+        class="form-control-sm mr-2">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        
+          
+        
       </form>
     </div><!-- End Search Bar -->
+    <div id="results"></div>
     
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -349,10 +359,13 @@
     </ul>
     
   </aside><!-- End Sidebar-->
-  <div class="align-center col-10 offset-1"></div>
+  <div class="align-center col-10 offset-1">
+    
+  </div>
     <div id="changes">
+      
       {% block changing-part %}
-          
+      
       {% endblock %}    
     </div>
   </div>

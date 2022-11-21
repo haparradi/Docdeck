@@ -35,6 +35,7 @@ urlpatterns = [
 
 htmx_views = [
     path('check_username/', views.check_username, name='check_username'),
+    
 ]
 
 urlpatterns+=htmx_views

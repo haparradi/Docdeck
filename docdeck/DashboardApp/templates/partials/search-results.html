@@ -1,0 +1,18 @@
+
+{% if results %}
+    {% csrf_token %}
+    <ul class="list-group col-xs-12">
+        
+        {% for patient in results %}
+            <li class="list-group-item d-flex jistify-content-between align-items-center">
+                {{patient}}
+
+            </li>
+            
+        {% endfor %}
+            
+
+    </ul>
+    
+{% endif %}
+    
