@@ -1,13 +1,17 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from PacientesApp.models import Paciente, HistoriaClinica, Consulta
+
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView, UpdateView, DeleteView
+
+
 from LoginApp.forms import UpdateUserForm, UpdateProfileForm, ChangePasswordForm
 from PacientesApp.forms import PatientForm, HistoriaForm, DataTreinoForm
 
@@ -84,11 +88,11 @@ def add_patient(request, id):
 def patient_detail(request, id): 
     if request.method == 'GET':
         patient = Paciente.objects.get(id=id)
-        try:
-            historia = get_object_or_404(HistoriaClinica, pk=id)
-            return render(request, 'patient-detail.html', {'historia':historia})
-        except:
-            return render(request, 'patient-detail.html', {'patient':patient})
+        # try:
+        #     historia = get_object_or_404(HistoriaClinica, pk=id)
+        #     return render(request, 'patient-detail.html', {'historia':historia})
+        # except:
+        return render(request, 'patient-detail.html', {'patient':patient})
         
 @login_required
 def add_history(request, id):
@@ -136,17 +140,24 @@ def delete_patient(request, pk):
     
     return render(request, 'patients.html', {'patients':patients})
 
+class PatientEdit(UpdateView, LoginRequiredMixin):
+    model = Paciente
+    form_class = PatientForm
+    template_name = 'update-patient.html'
+    context_object_name = 'patient_form'
+    success_url = reverse_lazy('patients')
+    
 @login_required
 def search_patient(request):
     search_text = request.POST.get('search')
 
-    # look up all films that contain the text
-    # exclude user films
+    # look up all patient that contain the text in their first name
+    
     if request.user.is_superuser:
-        results = Paciente.objects.filter(nombre__icontains=search_text)
+        results = Paciente.objects.filter(Q(nombre__icontains=search_text) | Q(apellido__icontains=search_text))
         context = {"results": results}
     else:
-        results = request.user.paciente.filter(nombre__icontains=search_text)
+        results = request.user.paciente.filter(Q(nombre__icontains=search_text) | Q(apellido__icontains=search_text))
         context = {"results": results}
     return render(request, 'partials/search-results.html', context)
 

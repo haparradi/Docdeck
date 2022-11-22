@@ -30,6 +30,7 @@ urlpatterns = [
     path('delete-patient/<pk>/', views.delete_patient, name='delete-patient'),
     path('consultas/', views.ConsultasListView.as_view(), name='consultas'),
     path('consulta-detail/<pk>/', views.consulta_detail, name='consulta-detail'),
+    path('update-patient/<pk>/', views.PatientEdit.as_view(), name='update-patient')
 ]
 
 htmx_urlpatterns = [

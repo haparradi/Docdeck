@@ -4,7 +4,7 @@
         
         {% for patient in results %}
             <li class="list-group-item d-flex jistify-content-between align-items-center">
-                {{patient}}
+                <a href="{% url 'patient-detail' patient.id %}">{{patient}}</a>
 
             </li>
             
@@ -13,5 +13,8 @@
 
     </ul>
 {% else %}
-<p>Resultados no encontrados</p>
+    <ul class="list-group col-xs-12">
+
+        <li class="list-group-item d-flex jistify-content-between align-items-center">Resultados no encontrados</li>
+    </ul>
 {% endif %}
