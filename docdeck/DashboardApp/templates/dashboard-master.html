@@ -2,6 +2,7 @@
 <html lang="en">
   
   {% load static %}
+  {% load dashboard_extras %}
   
   <head>
   <meta charset="utf-8">
@@ -31,7 +32,10 @@
   <link href="/static/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="/static/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="/static/vendor/simple-datatables/style.css" rel="stylesheet">
-  
+
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
+
   </head>
 
 <body id="body">
@@ -51,9 +55,14 @@
     
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <input type="text" name="search" placeholder="Patient name..." title="Enter search keyword"
+        hx-post="{% url 'search-patient' %}"
+        hx-target="#results"
+        hx-trigger="keyup changed delay:500ms"
+        class="form-control-sm mr-2">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
+      <div id="results" class="justify-content-between"></div>
     </div><!-- End Search Bar -->
     
     <nav class="header-nav ms-auto">
@@ -69,14 +78,14 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">{{user.consulta.all|length}}</span>
+            <span class="badge bg-primary badge-number">{% with consulta=user.consulta|read %}{{consulta|length}} {%endwith%}</span>
 
           </a><!-- End Notification Icon -->
           
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have {{user.consulta.all|length}} notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              You have {% with consulta=user.consulta|read %}{{consulta|length}} {% endwith %} notifications
+              <a href="{% url 'consultas' %}"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -86,16 +95,17 @@
               
               {% if not consulta.read %}
             
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                    <h4>Consulta nueva</h4>
-                    <p>{{consulta}}</p>
-                    <p>{{consulta.pub_date}}</p>
-                </div>
-            </li>
-                
-                {% endif %}
+                <a href="{% url 'consulta-detail' consulta.id %}">
+                  <li class="notification-item">
+                    <i class="bi bi-exclamation-circle text-warning"></i>
+                    <div>
+                        <h4>Consulta nueva</h4>
+                        <p>{{consulta}}</p>
+                        <p>{{consulta.pub_date}}</p>
+                     </div>
+                  </li>
+                </a>
+              {% endif %}
                   
                 
               <li>
@@ -313,6 +323,13 @@
         
       </li><!-- End Historias Clinicas Page Nav -->
       
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'consultas' %}">
+          <i class="ri-contacts-line"></i>
+          <span>Consultas</span>
+        </a>
+        
+      </li><!-- End Consultas Page Nav-->
       <li class="nav-heading">Paginas</li>
       
       <li class="nav-item">
