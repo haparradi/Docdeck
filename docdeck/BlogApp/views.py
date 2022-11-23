@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import BlogPosts
 from django.views.generic import TemplateView
-from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404
 
 

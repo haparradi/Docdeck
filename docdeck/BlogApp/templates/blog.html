@@ -3,6 +3,21 @@
 {% load static %}
 
 {% block changing-body %}
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+          <div class="container">
+    
+            <div class="d-flex justify-content-between align-items-center">
+              <h2>Blog</h2>
+              <ol>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li>Blog</li>
+              </ol>
+            </div>
+    
+          </div>
+        </section><!-- End Breadcrumbs -->
     
     {% for post in posts %}
 
@@ -33,7 +48,9 @@
               </div>
 
               <h6 class="post-description">{{ post.post_description }}</h6>
-
+              <p></p>
+              <p></p>
+              <p></p>
               <div class="entry-content">
                 <p>
                   {{ post.post_content }}
@@ -46,5 +63,84 @@
             </article><!-- End blog entry -->
       
     {% endfor %}
+
+    <div class="blog-pagination">
+      <ul class="justify-content-center">
+        <li><a href="#">1</a></li>
+        <li class="active"><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+      </ul>
+    </div>
+  
+  </div><!-- End blog entries list -->
+  
+  <div class="col-lg-4">
+  
+    <div class="sidebar">
+  
+      <h3 class="sidebar-title">Search</h3>
+      <div class="sidebar-item search-form">
+        <form action="">
+          <input type="text">
+          <button type="submit"><i class="bi bi-search"></i></button>
+        </form>
+      </div><!-- End sidebar search formn-->
+  
+      <h3 class="sidebar-title">Categories</h3>
+      <div class="sidebar-item categories">
+        <ul>
+          <li><a href="#">General <span>(25)</span></a></li>
+          <li><a href="#">Lifestyle <span>(12)</span></a></li>
+          <li><a href="#">Travel <span>(5)</span></a></li>
+          <li><a href="#">Design <span>(22)</span></a></li>
+          <li><a href="#">Creative <span>(8)</span></a></li>
+          <li><a href="#">Educaion <span>(14)</span></a></li>
+        </ul>
+        
+      </div><!-- End sidebar categories-->
+      
+      <h3 class="sidebar-title">Ultimos Posts</h3>
+      <div class="sidebar-item recent-posts">
+
+        
+        {% for last in posts %}
+
+        <div class="post-item clearfix">
+          <img src="assets/img/blog/blog-recent-1.jpg" alt="">
+          <h4><a href="{% url 'post' last.slug %}">{{last.post_title}}</a></h4>
+          <time>{{ last.published }}</time>
+        </div>
+          
+        {% endfor %}
+  
+      </div><!-- End sidebar recent posts-->
+  
+      <h3 class="sidebar-title">Tags</h3>
+      <div class="sidebar-item tags">
+        <ul>
+          <li><a href="#">App</a></li>
+          <li><a href="#">IT</a></li>
+          <li><a href="#">Business</a></li>
+          <li><a href="#">Mac</a></li>
+          <li><a href="#">Design</a></li>
+          <li><a href="#">Office</a></li>
+          <li><a href="#">Creative</a></li>
+          <li><a href="#">Studio</a></li>
+          <li><a href="#">Smart</a></li>
+          <li><a href="#">Tips</a></li>
+          <li><a href="#">Marketing</a></li>
+        </ul>
+      </div><!-- End sidebar tags-->
+  
+    </div><!-- End sidebar -->
+  
+  </div><!-- End blog sidebar -->
+  
+  </div>
+  
+  </div>
+  </section><!-- End Blog Section -->
+  
+  </main><!-- End #main -->
 
   {% endblock %}
