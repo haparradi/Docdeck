@@ -54,7 +54,7 @@
     </div><!-- End Logo -->
     
     <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
+      <form class="search-form d-flex align-items-center" method="POST" action="{% url 'search-patient' %}" autocomplete="off">{% csrf_token %}
         <input type="text" name="search" placeholder="Patient name..." title="Enter search keyword"
         hx-post="{% url 'search-patient' %}"
         hx-target="#results"
@@ -69,7 +69,7 @@
       <ul class="d-flex align-items-center">
         
         <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
+          <a class="nav-link nav-icon search-bar-toggle " href="{% url 'search-patient' %}">{% csrf_token %}
             <i class="bi bi-search"></i>
           </a>
         </li><!-- End Search Icon-->
