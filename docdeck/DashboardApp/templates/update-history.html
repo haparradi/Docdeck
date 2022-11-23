@@ -28,8 +28,8 @@
                 <form action="" method="POST" class="form-control">{% csrf_token %}
 
                     <div class="row mb-3">
-                        <label for="HistoriaClinica" class="col-md-4 col-lg-3 col-form-label">{{form.historia.label_tag}}</label>
-                        <div class="col-md-8 col-lg-9">
+                        <label for="HistoriaClinica" class="col-md-4 col-lg-3 col-form-label"></label>
+                        <div class="col-md-12 col-lg-12">
                         <!-- {{historia_form.historia.errors}}
                         {% render_field historia_form.historia.nombre %} -->
                             {{form.as_p}}

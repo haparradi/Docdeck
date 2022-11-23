@@ -22,13 +22,27 @@
         <!-- <h6 class="card-subtitle mb-2 text-muted">En esta seccion...</h6>
         <p></p> -->
         <div>   
-            {% if historia %}
-                <p>{{historia}}</p>
-                <p class="card-text"><a href="{% url 'history-detail' historia.id %}" class="btn btn-primary">Ver historia clinica</a></p>
+            {% if patient.record %}
+                <p>Nombre completo: {{patient.record}}</p>
+                <p>Fecha de nacimiento: {{patient.fecha_de_nacimiento}}</p>
+                <p>Religion: {{patient.religion}}</p>
+                <p>Documento: {{patient.documento}}</p>
+                <p>Telefono: {{patient.telefono}}</p>
+                <p>E-mail: {{patient.email}}</p>
+                <p>Estado civil: {{patient.estado_civil}}</p>
+                <p class="card-text"><a href="{% url 'history-detail' patient.record.id %}" class="btn btn-primary">Ver historia clinica</a></p>
+                <p class="card-text"><a href="{% url 'update-patient' patient.id %}" class="btn btn-primary">Actualizar</a></p>
             
             {% else %}
-                <p>{{patient}}</p>
+                <p>Nombre completo: {{patient}}</p>
+                <p>Fecha de nacimiento: {{patient.fecha_de_nacimiento}}</p>
+                <p>Religion: {{patient.religion}}</p>
+                <p>Documento: {{patient.documento}}</p>
+                <p>Telefono: {{patient.telefono}}</p>
+                <p>E-mail: {{patient.email}}</p>
+                <p>Estado civil: {{patient.estado_civil}}</p>
                 <p class="card-text"><a href="{% url 'add-history' patient.id %}" class="btn btn-primary">Agregar historia clinica</a></p>
+                <p class="card-text"><a href="{% url 'update-patient' patient.id %}" class="btn btn-primary">Actualizar</a></p>
             {% endif %}            
         </div>
         <p></p>

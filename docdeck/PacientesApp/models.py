@@ -1,4 +1,5 @@
 from LoginApp.models import Doctor
+
 from django.db import models
 from django.utils import timezone
 ESTADO_CIVIL_CHOICE = [
@@ -41,6 +42,15 @@ class Consulta(models.Model):
     read = models.BooleanField(null=True, default=False)
     pub_date = models.DateTimeField(default=timezone.now)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='consulta')
+    
     def __str__(self):
         return f'{self.nombre_apellido}'
     
+    def read_constulta(self):
+        self.read = True
+        self.save()
+        return True
+    
+    
+    def nuevas_consultas(self):
+        return self.filter(read=False)

@@ -1,0 +1,203 @@
+{% extends 'blog-master.html' %}
+
+{% load static %}
+
+{% block changing-body %}
+
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Entrada</h2>
+        <ol>
+          <li><a href="{% url 'home' %}">Inicio</a></li>
+          <li><a href="{% url 'blog' %}">Blog</a></li>
+          <li>Entrada</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <!-- ======= Blog Single Section ======= -->
+  <section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row">
+
+        <div class="col-lg-8 entries">
+
+          <article class="entry entry-single">
+
+            <div class="entry-img">
+              <img src="{{post.post_image}}" alt="" class="img-fluid">
+            </div>
+
+            <h2 class="entry-title">
+              <a href="blog-single.html">{{post.post_title}}</a>
+            </h2>
+
+            <h6 class="entry-description">{{ post.post_description }}</h6>
+
+            <div class="entry-meta">
+              <ul>
+                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">{{ post.author }}</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html">{{ post.published }}</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+              </ul>
+            </div>
+
+            <div class="entry-content">
+              <p>
+                {{ post.post_content }}
+              </p>
+            </div>
+
+            <div class="entry-footer">
+              <i class="bi bi-folder"></i>
+              <ul class="cats">
+                <li><a href="#">Business</a></li>
+              </ul>
+
+              <i class="bi bi-tags"></i>
+              <ul class="tags">
+                <li><a href="#">Creative</a></li>
+                <li><a href="#">Tips</a></li>
+                <li><a href="#">Marketing</a></li>
+              </ul>
+            </div>
+
+          </article><!-- End blog entry -->
+
+          <div class="blog-author d-flex align-items-center">
+            <img src="assets/img/blog/blog-author.jpg" class="rounded-circle float-left" alt="">
+            <div>
+              <h4>Jane Smith</h4>
+              <div class="social-links">
+                <a href="https://twitters.com/#"><i class="bi bi-twitter"></i></a>
+                <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
+                <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
+              </div>
+              <p>
+                Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+              </p>
+            </div>
+          </div><!-- End blog author bio -->
+
+          <div class="blog-comments">
+
+            <h4 class="comments-count">8 Comments</h4>
+
+            <div id="comment-1" class="comment">
+              <div class="d-flex">
+                <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div>
+                <div>
+                  <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                  <time datetime="2020-01-01">01 Jan, 2020</time>
+                  <p>
+                    Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis molestiae est qui cum soluta.
+                    Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
+                  </p>
+                </div>
+              </div>
+            </div><!-- End comment #1 -->
+
+            <div id="comment-2" class="comment">
+              <div class="d-flex">
+                <div class="comment-img"><img src="assets/img/blog/comments-2.jpg" alt=""></div>
+                <div>
+                  <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                  <time datetime="2020-01-01">01 Jan, 2020</time>
+                  <p>
+                    Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut beatae.
+                  </p>
+                </div>
+              </div>
+
+              <div id="comment-reply-1" class="comment comment-reply">
+                <div class="d-flex">
+                  <div class="comment-img"><img src="assets/img/blog/comments-3.jpg" alt=""></div>
+                  <div>
+                    <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                    <time datetime="2020-01-01">01 Jan, 2020</time>
+                    <p>
+                      Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam aspernatur ut vitae quia mollitia id non. Qui ad quas nostrum rerum sed necessitatibus aut est. Eum officiis sed repellat maxime vero nisi natus. Amet nesciunt nesciunt qui illum omnis est et dolor recusandae.
+
+                      Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in porro aut. Magnam qui cum. Illo similique occaecati nihil modi eligendi. Pariatur distinctio labore omnis incidunt et illum. Expedita et dignissimos distinctio laborum minima fugiat.
+
+                      Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis error dolorum non autem quisquam vero rerum neque.
+                    </p>
+                  </div>
+                </div>
+
+                </div><!-- End comment reply #2-->
+
+              </div><!-- End comment reply #1-->
+
+            </div><!-- End comment #2-->
+
+        </div><!-- End blog entries list -->
+
+        <div class="col-lg-4">
+
+          <div class="sidebar">
+
+            <h3 class="sidebar-title">Search</h3>
+            <div class="sidebar-item search-form">
+              <form action="">
+                <input type="text">
+                <button type="submit"><i class="bi bi-search"></i></button>
+              </form>
+            </div><!-- End sidebar search formn-->
+
+            <h3 class="sidebar-title">Categorias</h3>
+            <div class="sidebar-item categories">
+              <ul>
+                <li><a href="#">General <span>(25)</span></a></li>
+              </ul>
+            </div><!-- End sidebar categories-->
+
+            <h3 class="sidebar-title">Ultimas publicaciones</h3>
+            <div class="sidebar-item recent-posts">
+              {% for post in posts %}
+              <div class="post-item clearfix">
+                <img src="{{post.post_image.url}}" alt="img-fluid img-thumbnail">
+                <h4><a href="{% url 'post' post.slug %}">{{post.post_title}}</a></h4>
+                <time>{{ post.published }}</time>
+              </div>
+              {% endfor %}
+              
+            </div><!-- End sidebar recent posts-->
+
+            <h3 class="sidebar-title">Tags</h3>
+            <div class="sidebar-item tags">
+              <ul>
+                <li><a href="#">App</a></li>
+                <li><a href="#">IT</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Office</a></li>
+                <li><a href="#">Creative</a></li>
+                <li><a href="#">Studio</a></li>
+                <li><a href="#">Smart</a></li>
+                <li><a href="#">Tips</a></li>
+                <li><a href="#">Marketing</a></li>
+              </ul>
+            </div><!-- End sidebar tags-->
+
+          </div><!-- End sidebar -->
+
+        </div><!-- End blog sidebar -->
+
+      </div>
+
+    </div>
+  </section><!-- End Blog Single Section -->
+
+</main><!-- End #main -->
+
+{% endblock %}
