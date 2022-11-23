@@ -1,0 +1,38 @@
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+
+            <article class="entry">
+
+              <div class="entry-img">
+                <img src="{{post.post_image}}" alt="" class="img-fluid">
+              </div>
+
+              <h2 class="entry-title">
+                <a href="#">{{post.post_title}}</a>
+              </h2>
+
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">{{ post.author }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">{{ post.published }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">12 Comments</a></li>
+                </ul>
+              </div>
+
+              <h6 class="post-description">{{ post.post_description }}</h6>
+
+              <div class="entry-content">
+                <p>
+                  {{ post.post_content }}
+                </p>
+                <div class="read-more">
+                  <a href="{% url 'post' post.slug %}">Ver post...</a>
+                </div>
+              </div>
+
+            </article><!-- End blog entry -->

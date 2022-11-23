@@ -30,7 +30,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/', enviar_consulta, name='contact'),
     path('team/', views.team, name='team'),
-    path('blog/', views.blog, name='blog'),
 ]
 
 htmx_views = [

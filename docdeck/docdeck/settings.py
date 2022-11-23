@@ -44,8 +44,7 @@ INSTALLED_APPS = [
     'BlogApp',
     'widget_tweaks',
     'django_extensions',
-    'phone_field',
-    
+    'phone_field',      
 ]
 
 MIDDLEWARE = [
@@ -125,7 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
 
 MEDIA_URL = 'media/'
 

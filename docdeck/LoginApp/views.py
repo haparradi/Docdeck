@@ -90,9 +90,6 @@ def services(request):
 def contact(request):
     return render(request, 'contact.html')
 
-def blog(request):
-    return render(request, 'blog.html')
-
 def about(request):
     return render(request, 'about.html')
 
