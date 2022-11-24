@@ -84,8 +84,8 @@
           
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have {% with consulta=user.consulta|read %}{{consulta|length}} {% endwith %} notifications
-              <a href="{% url 'consultas' %}"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              Tienes {% with consulta=user.consulta|read %}{{consulta|length}} {% endwith %} notificaciones
+              <a href="{% url 'consultas' %}"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver todas</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -152,7 +152,7 @@
               <hr class="dropdown-divider">
             </li> -->
             <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
+              <a href="#">Mostrar todas las</a>
             </li>
             
           </ul><!-- End Notification Dropdown Items -->
