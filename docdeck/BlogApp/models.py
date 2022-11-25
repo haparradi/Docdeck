@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from LoginApp.models import Doctor
+from django.template.defaultfilters import slugify
 
 class Category(models.Model):
     
@@ -37,6 +38,11 @@ class BlogPosts(models.Model):
 
     class Meta:
         ordering = ("-published",)
+        
+    def save(self, *args, **kwargs):  # new
+        if not self.slug:
+            self.slug = slugify(self.post_title)
+        return super().save(*args, **kwargs)
 
 class Comments(models.Model): 
     post = models.ForeignKey(BlogPosts, on_delete=models.CASCADE, related_name="comments")
