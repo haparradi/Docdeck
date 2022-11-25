@@ -29,10 +29,10 @@ def login_user(request):
                 return redirect('index')
             else:
                 response = 'User name or password are invalid'
-                return render(request, 'index.html', {'response':response})
+                return render(request, 'login.html', {'response':response, 'my_form':my_form})
             
         response = 'User name or password are invalid'
-        return render(request, 'index.html', {'response':response})
+        return render(request, 'login.html', {'response':response, 'my_form':my_form})
     else:
         my_form = AuthenticationForm()
         return render(request, 'login.html', {'my_form':my_form})

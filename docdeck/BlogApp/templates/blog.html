@@ -66,8 +66,8 @@
 
     <div class="blog-pagination">
       <ul class="justify-content-center">
-        <li><a href="#">1</a></li>
-        <li class="active"><a href="#">2</a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
         <li><a href="#">3</a></li>
       </ul>
     </div>
@@ -106,7 +106,7 @@
         {% for last in posts %}
 
         <div class="post-item clearfix">
-          <img src="assets/img/blog/blog-recent-1.jpg" alt="">
+          <img src="{{last.post_image.url}}" alt="">
           <h4><a href="{% url 'post' last.slug %}">{{last.post_title}}</a></h4>
           <time>{{ last.published }}</time>
         </div>

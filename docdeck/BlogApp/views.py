@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+
 from .models import BlogPosts
-from django.views.generic import TemplateView
+from .forms import BlogForm
+
+from django.views.generic import TemplateView, FormView
 from django.shortcuts import get_object_or_404
 
 
@@ -19,3 +23,9 @@ def post_details(request, post):
     return render(request,"blog-single.html", context) 
 
 
+class NewPost(FormView):
+    form_class = BlogForm
+    template_name = 'new-post.html'
+    success_url = reverse_lazy('index')
+    
+    

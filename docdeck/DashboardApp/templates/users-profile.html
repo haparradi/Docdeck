@@ -66,7 +66,7 @@
               <div class="tab-content pt-2">
                 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">About</h5>
+                  <h5 class="card-title">Bio</h5>
                   <p class="small fst-italic">{{user.profile.bio}}</p>
                   
                   
@@ -109,7 +109,7 @@
                         <img src="{{user.profile.avatar.url}}" alt="Profile">
                         <div class="pt-2">
                           {{profile_form.avatar.errors}}
-                          <a class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload">{% render_field profile_form.avatar %}</i></a>
+                          <a class="" title="Upload new profile image"><i class="bi bi-upload">{% render_field profile_form.avatar %}</i></a>
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
                       </div>

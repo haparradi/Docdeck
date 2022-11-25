@@ -13,14 +13,17 @@ from django.views.generic.edit import FormView, UpdateView, DeleteView
 
 
 from LoginApp.forms import UpdateUserForm, UpdateProfileForm, ChangePasswordForm
+from BlogApp.models import BlogPosts, Category, Comments
 from PacientesApp.forms import PatientForm, HistoriaForm, DataTreinoForm
 
 # Create your views here.
 @login_required
 def index(request):
     consultas = request.user.consulta.all()
+    blog_posts = BlogPosts.objects.all()
                
-    return render(request, 'index.html', {'consultas':consultas})
+    return render(request, 'index.html', {'consultas':consultas, 'blog_posts':blog_posts})
+
 @login_required
 def profile(request):
     consultas = request.user.consulta.all()
