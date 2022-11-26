@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 
-from .models import BlogPosts
-from .forms import BlogForm
+from .models import BlogPosts, Comments
+from .forms import BlogForm, CommentForm
 
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, DetailView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -33,9 +34,9 @@ def post_details(request, post):
         
 def new_post(request):
     if request.method == 'POST':
-        print(request.user)
-        print(request.user.id)
+       
         form = BlogForm(request.POST, request.FILES)
+        
         if form.is_valid():
             data = form.cleaned_data
             post = BlogPosts.objects.create(
@@ -57,3 +58,28 @@ def new_post(request):
         form = BlogForm()
         return render(request, 'new-post.html', {'form':form})
         
+def new_comment(request, pk):
+    if request.method == 'POST':
+        
+        form = CommentForm(request.POST)
+        post = BlogPosts.objects.get(pk=pk)
+        if form.is_valid():
+            data = form.cleaned_data
+            comment = Comments.objects.create(comment_name=data['comment_name'],
+                                              comment_email=data['comment_email'],
+                                              comment_content=data['comment_content'],
+                                              post=post,
+                                              )
+            comment.save()
+            return redirect('index')
+        return render(request, 'new-comment.html', {'form':form, 'pk':pk})
+    else:
+        form = CommentForm()
+        return render(request, 'new-comment.html', {'form':form, 'pk':pk})
+    
+class PostDetail(DetailView):
+    model = BlogPosts
+    template_name = 'post-detail.html'
+    context_object_name = 'post'
+    slug_field = 'slug'
+    slug_url_kwarg = 'post'

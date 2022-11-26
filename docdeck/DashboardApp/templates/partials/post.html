@@ -1,0 +1,92 @@
+<section id="post" class="blog">
+    <div class="container" data-aos="fade-up">
+        <article class="entry">
+
+            <div class="entry-img">
+                <div class="col-md-4 px-0">
+                    <img src="{{post.post_image.url}}" alt="" class="img-thumbnail img-resize">
+                </div>
+            </div>
+    
+            <h2 class="entry-title">
+                <a href="#">{{post.post_title}}</a>
+            </h2>
+
+            <h6 class="entry-description">{{ post.post_description }}</h6>
+
+            <div class="entry-meta">
+                <ul>
+                    <li class="d-flex align-items-center"><i class="bi bi-person" title="autor" ></i> <a href="#">{{ post.author }}</a></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">{{ post.published }}</a></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">{{post.comments|length}} Commentarios</a></li>
+                </ul>
+            </div>
+            
+            
+            <div class="entry-content">
+                <p>
+                    {{ post.post_content }}
+                </p>             
+            </div>
+
+            <div class="entry-footer">
+                <i class="bi bi-folder"></i>
+                <ul class="cats">
+                  <li><a href="#">{{post.category}}</a></li>
+                </ul>
+            </div>
+
+        </article>
+        <div class="blog-author d-flex align-items-center">
+            <img src="{{post.author.profile.avatar.url}}" class="rounded-circle float-left" alt="">
+            <div>
+              <h4>{{post.author}}</h4>
+              <div class="social-links">
+                <a href="https://twitters.com/#"><i class="bi bi-twitter"></i></a>
+                <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
+                <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
+              </div>
+              <p>
+                {{post.author.profile.bio}}
+              </p>
+            </div>
+        </div><!-- End blog author bio -->
+
+        
+            <div class="blog-comments">
+  
+                <h4 class="comments-count">{{post.comments.all|length}} Comments</h4>
+
+                {% if post.comments.all|length > 0 %}
+                    
+            
+                    
+                    {% for comment in post.comments.all %}
+                    
+
+                        <div id="comment-1" class="comment">
+                            <div class="d-flex">
+                                <div class="comment-img"><img src="" alt=""></div>
+                            <div>
+                                <h5><a href="">{{comment.comment_name}}</a></h5>
+                                <time datetime="">{{comment.publish}}</time>
+                                <p>
+                                    {{comment.comment_content}}
+                                </p>
+                            </div>
+                        </div>
+                        
+                    {% endfor %}
+                
+                    
+                {% endif %}
+                <div class="read-more">
+                    <a href="{% url 'new-comment' post.id %}">
+                        <button class="btn btn-primary">
+                            Comentar
+                        </button>
+                    </a>
+                </div>
+            </div>
+    </div>
+</section>

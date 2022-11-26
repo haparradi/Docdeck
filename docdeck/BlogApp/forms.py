@@ -17,3 +17,13 @@ class BlogForm(forms.ModelForm):
             'status': ('Estado'),
         }
         
+class CommentForm(forms.ModelForm):
+    
+    class Meta:
+        model = Comments
+        fields = ['comment_name','comment_email', 'comment_content']
+        labels = {
+            'comment_name':('Nombre'),
+            'comment_email':('E-mail'),
+            'comment_content':('Comentario'),
+        }

@@ -6,12 +6,14 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from PacientesApp.models import Paciente, HistoriaClinica, Consulta
+from django.core.paginator import Paginator
+
 
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView, UpdateView, DeleteView
 
 
+from PacientesApp.models import Paciente, HistoriaClinica, Consulta
 from LoginApp.forms import UpdateUserForm, UpdateProfileForm, ChangePasswordForm
 from BlogApp.models import BlogPosts, Category, Comments
 from PacientesApp.forms import PatientForm, HistoriaForm, DataTreinoForm
@@ -21,7 +23,12 @@ from PacientesApp.forms import PatientForm, HistoriaForm, DataTreinoForm
 def index(request):
     consultas = request.user.consulta.all()
     blog_posts = BlogPosts.objects.all()
-               
+    print(request.htmx == False)
+    
+    # if request.htmx:
+        
+    #     return render(request, 'partials/post-list.html', {'consultas':consultas, 'page_object':page_object})
+    
     return render(request, 'index.html', {'consultas':consultas, 'blog_posts':blog_posts})
 
 @login_required
