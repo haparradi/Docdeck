@@ -39,11 +39,12 @@ def new_post(request):
        
         form = BlogForm(request.POST, request.FILES)
         
+        print(request.FILES)
+        
         if form.is_valid():
             data = form.cleaned_data
             post = BlogPosts.objects.create(
                 category=data['category'],
-                post_image=data['post_image'],
                 post_title=data['post_title'],
                 post_description=data['post_description'],
                 post_content=data['post_content'],
@@ -53,7 +54,11 @@ def new_post(request):
            
             # post.save()
             # post.author.set(request.user.id)
-            post.save
+            post.save()
+            
+            post.post_image=data['post_image']
+            post.save()
+            
             return redirect('index')
         return render(request, 'new-post.html', {'form':form})
     else:
