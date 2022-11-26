@@ -5,8 +5,9 @@
 
                   <div class="entry-img">
                     <div class="col-md-4 px-0">
-                      <img src="{{blog.post_image.url}}" alt="" class="img-thumbnail img-resize">
+                      <img src="{{blog.post_image.url}}" alt="image" class="img-thumbnail img-resize">
                     </div>
+                    
                   </div>
     
                   <h2 class="entry-title">
@@ -27,8 +28,22 @@
                     <p>
                       {{ blog.post_content }}
                     </p>
-                    <div class="read-more">
-                      <a href="{% url 'post' blog.slug %}">Ver post...</a>
+                    <div class="read-more d-flex justify-content-between">
+                        <a href="{% url 'post' blog.slug %}">Ver post...</a>
+                        
+                        {% if user.is_superuser %}
+                            <i class="btn btn-danger btn-sm bi bi-trash" 
+                            hx-delete="{% url 'delete-post' blog.pk %}"
+                            hx-target="#body"
+                            hx-confirm="Esta seguro"
+                            title="DeletePatient"></i>
+                        {% elif user.id == blog.author.id%}
+                            <i class="btn btn-danger btn-sm bi bi-trash" 
+                            hx-delete="{% url 'delete-post' blog.pk %}"
+                            hx-target="#body"
+                            hx-confirm="Esta seguro"
+                            title="DeletePost"></i>
+                        {% endif %}
                     </div>
                   </div>
                 </article>
@@ -36,14 +51,16 @@
 
 
 {% if page_object.has_next %}
+
     <tr id="load-more">
         <td colspan="3" class="text-center">
             <button class="btn btn-primary"
-                    hx-get="{% url 'index' %}?page={{page_obj.next_page_number}}"
+                    hx-get="{% url 'index' %}?page={{page_object.next_page_number}}"
                     hx-target="#load-more"
                     hx-swap="outerHTML">Load More</button>
         </td>
     </tr>
+
 {% endif %}
 
     </div>

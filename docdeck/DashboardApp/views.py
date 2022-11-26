@@ -23,9 +23,13 @@ from PacientesApp.forms import PatientForm, HistoriaForm, DataTreinoForm
 def index(request):
     consultas = request.user.consulta.all()
     blog_posts = BlogPosts.objects.all()
-    print(request.htmx == False)
+    # paginator = Paginator(blog_posts, 4)
+    # page_number = request.GET.get('page',1)
+    # page_object = paginator.get_page(page_number)
+    # print(request.htmx == False)
     
     # if request.htmx:
+    #     print('hola')
         
     #     return render(request, 'partials/post-list.html', {'consultas':consultas, 'page_object':page_object})
     

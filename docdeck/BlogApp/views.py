@@ -5,9 +5,11 @@ from django.core.paginator import Paginator
 from .models import BlogPosts, Comments
 from .forms import BlogForm, CommentForm
 
+from django.views.decorators.http import require_http_methods
 from django.views.generic import TemplateView, DetailView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 class Blog(TemplateView):
@@ -57,7 +59,8 @@ def new_post(request):
     else:
         form = BlogForm()
         return render(request, 'new-post.html', {'form':form})
-        
+
+@login_required     
 def new_comment(request, pk):
     if request.method == 'POST':
         
@@ -77,9 +80,23 @@ def new_comment(request, pk):
         form = CommentForm()
         return render(request, 'new-comment.html', {'form':form, 'pk':pk})
     
-class PostDetail(DetailView):
+class PostDetail(DetailView, LoginRequiredMixin):
     model = BlogPosts
     template_name = 'post-detail.html'
     context_object_name = 'post'
     slug_field = 'slug'
     slug_url_kwarg = 'post'
+    
+@login_required
+@require_http_methods(['DELETE'])
+def delete_post(request, pk):
+    if request.user.is_superuser:
+        post = BlogPosts.objects.get(pk=pk)
+        post.delete()
+        blog_posts = BlogPosts.objects.all()
+    else:
+        post = request.user.blog_post.get(pk = pk)
+        post.delete()
+        blog_posts = BlogPosts.objects.all()
+    
+    return render(request, 'index.html', {'blog_posts':blog_posts})
