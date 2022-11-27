@@ -1,5 +1,7 @@
 # Docdeck
 
+Video descriptivo: https://www.youtube.com/watch?v=KwGzF3utark
+
 Proyecto Co-creado por:
 
   Ignacio gomez povina:
