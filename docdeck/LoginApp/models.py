@@ -7,6 +7,9 @@ from phone_field import PhoneField
 class Doctor(AbstractUser):
     especialidad = models.CharField(max_length=20, null=True, blank=True)
     telefono = PhoneField(null=True, blank=True)
+    
+    # def __str__(self):
+    #     return f'{self.user.username} {self.user.especialidad}'
 
 
 class Profile(models.Model):

@@ -1,5 +1,9 @@
 <section id="blog" class="blog">
     <div class="container" data-aos="fade-up">
+      
+      {% if blog_posts %}
+     
+        
         {% for blog in blog_posts %}
                 <article class="entry">
 
@@ -48,6 +52,12 @@
                   </div>
                 </article>
         {% endfor %}
+           
+
+      {% else %}
+
+      <p>No hay ningun post!</p>
+      {% endif %}
 
 
 {% if page_object.has_next %}
