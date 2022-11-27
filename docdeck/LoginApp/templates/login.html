@@ -8,6 +8,7 @@
     <div class="col-lg-4 col-md-6 footer-newsletter">    
         <form method="POST" action="{% url 'login' %}" autocomplete="off" class="row g-3 needs-validation">
             {% csrf_token %}
+            {{my_form.username.errors}}
             <div class="input-group has-validation">
               {{my_form.as_p}}
             </div>

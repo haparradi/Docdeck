@@ -1,0 +1,44 @@
+{% extends 'dashboard-master.html' %}
+
+{% load static %}
+
+{% block changing-part %}
+
+
+<main id="main" class="main">
+    
+  <div class="pagetitle">
+    <h1>¡Hola Dr(a). Bienvenido(a)!</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  
+ <!-- Start section -->
+
+    <section class="section dashboard">
+      <div class="row">
+        
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+            <p class="card-text"><a class="btn btn-primary" href="{% url 'new-post' %}">Nuevo Post</a></p>
+            <!-- Posts -->
+            <div class="col-12">
+              <div class="card">               
+                
+                {% include 'partials/post.html' %}
+
+              </div>
+
+            </div>
+            
+
+      </div>
+    </section>
+    
+    <!-- End section -->
+  
+  {% endblock %}

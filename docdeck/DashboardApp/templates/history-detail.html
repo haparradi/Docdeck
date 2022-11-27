@@ -7,12 +7,12 @@
 <main id="main" class="main">
     
     <div class="pagetitle">
-      <h1>Historia Clinica</h1>
+      <h1>Historias Clínicas</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
           <li class="breadcrumb-item active"><a href="{% url 'index' %}">Dashboard</a></li>
-          <li class="breadcrumb-item active"><a href="{% url 'records' %}">Historias Clinicas</a></li>
+          <li class="breadcrumb-item active"><a href="{% url 'records' %}">Historias Clínicas</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -20,7 +20,7 @@
 <section class="section"></section>
     <div class="card">
         <div class="card-body">
-        <h5 class="card-title">Historia Clinica de:</h5>
+        <h5 class="card-title">Historia Clínica de:</h5>
         <!-- <h6 class="card-subtitle mb-2 text-muted">En esta seccion puede Agregar, editar o eliminar pacientes.</h6>
         <p></p> -->
         <div>   
@@ -31,7 +31,7 @@
 
         </div>
 
-        <p class="text-center"><a href="{% url 'update-history' history.id %}" class="btn btn-primary">Editar</a> <a href="{% url 'records' %}" class="btn btn-primary">Volver a atras</a></p>
+        <p class="text-center"><a href="{% url 'update-history' history.id %}" class="btn btn-primary">Editar</a> <a href="{% url 'records' %}" class="btn btn-primary">Volver a atrás</a></p>
         <p></p>
         <p></p>
         </div>

@@ -11,18 +11,18 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Entrada</h2>
+        <h2>Blog Single</h2>
         <ol>
-          <li><a href="{% url 'home' %}">Inicio</a></li>
-          <li><a href="{% url 'blog' %}">Blog</a></li>
-          <li>Entrada</li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li>Blog Single</li>
         </ol>
       </div>
 
     </div>
   </section><!-- End Breadcrumbs -->
 
-  <!-- ======= Blog Single Section ======= --> 
+  <!-- ======= Blog Single Section ======= -->
   <section id="blog" class="blog">
     <div class="container" data-aos="fade-up">
 
@@ -33,11 +33,11 @@
           <article class="entry entry-single">
 
             <div class="entry-img">
-              <img src="{{post.post_image}}" alt="" class="img-fluid img-thumbnail">
+              <img src="{{post.post_image.url}}" alt="" class="img-fluid">
             </div>
 
             <h2 class="entry-title">
-              <a href="blog-single.html">{{post.post_title}}</a>
+              <a href="#">{{post.post_title}}</a>
             </h2>
 
             <h6 class="entry-description">{{ post.post_description }}</h6>
@@ -73,17 +73,16 @@
           </article><!-- End blog entry -->
 
           <div class="blog-author d-flex align-items-center">
-            <img src="{{post.author.profile.avatar.url}}" class="rounded-circle float-left" alt="img-fluid">
+            <img src="assets/img/blog/blog-author.jpg" class="rounded-circle float-left" alt="">
             <div>
-              <h4>{{ post.author }}</h4>
-              <p></p>
+              <h4>{{post.author}}</h4>
               <div class="social-links">
                 <a href="https://twitters.com/#"><i class="bi bi-twitter"></i></a>
                 <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
                 <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
               </div>
               <p>
-                {{ post.author.profile.bio }}
+                {{post.author.profile.bio}}
               </p>
             </div>
           </div><!-- End blog author bio -->
@@ -154,23 +153,45 @@
               </form>
             </div><!-- End sidebar search formn-->
 
-            <h3 class="sidebar-title">Categorias</h3>
+            <h3 class="sidebar-title">Categories</h3>
             <div class="sidebar-item categories">
               <ul>
                 <li><a href="#">General <span>(25)</span></a></li>
               </ul>
             </div><!-- End sidebar categories-->
 
-            <h3 class="sidebar-title">Ultimas publicaciones</h3>
+            <h3 class="sidebar-title">Recent Posts</h3>
             <div class="sidebar-item recent-posts">
-              {% for post in posts %}
               <div class="post-item clearfix">
-                <img src="{{post.post_image.url}}" alt="img-fluid img-thumbnail">
-                <h4><a href="{% url 'post' post.slug %}">{{post.post_title}}</a></h4>
-                <time>{{ post.published }}</time>
+                <img src="assets/img/blog/blog-recent-1.jpg" alt="">
+                <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
+                <time datetime="2020-01-01">Jan 1, 2020</time>
               </div>
-              {% endfor %}
-              
+
+              <div class="post-item clearfix">
+                <img src="assets/img/blog/blog-recent-2.jpg" alt="">
+                <h4><a href="blog-single.html">Quidem autem et impedit</a></h4>
+                <time datetime="2020-01-01">Jan 1, 2020</time>
+              </div>
+
+              <div class="post-item clearfix">
+                <img src="assets/img/blog/blog-recent-3.jpg" alt="">
+                <h4><a href="blog-single.html">Id quia et et ut maxime similique occaecati ut</a></h4>
+                <time datetime="2020-01-01">Jan 1, 2020</time>
+              </div>
+
+              <div class="post-item clearfix">
+                <img src="assets/img/blog/blog-recent-4.jpg" alt="">
+                <h4><a href="blog-single.html">Laborum corporis quo dara net para</a></h4>
+                <time datetime="2020-01-01">Jan 1, 2020</time>
+              </div>
+
+              <div class="post-item clearfix">
+                <img src="assets/img/blog/blog-recent-5.jpg" alt="">
+                <h4><a href="blog-single.html">Et dolores corrupti quae illo quod dolor</a></h4>
+                <time datetime="2020-01-01">Jan 1, 2020</time>
+              </div>
+
             </div><!-- End sidebar recent posts-->
 
             <h3 class="sidebar-title">Tags</h3>

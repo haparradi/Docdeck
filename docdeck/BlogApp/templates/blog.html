@@ -32,7 +32,7 @@
             <article class="entry">
 
               <div class="entry-img">
-                <img src="{{post.post_image.url}}" alt="img-fluid" class="img-fluid img-thumbnail">
+                <img src="{{post.post_image.url}}" alt="" class="img-fluid img-thumbnail">
               </div>
 
               <h2 class="entry-title">
@@ -56,7 +56,7 @@
                   {{ post.post_content }}
                 </p>
                 <div class="read-more">
-                  <a href="{% url 'post' post.slug %}">Ver mas</a>
+                  <a href="{% url 'post' post.slug %}">Ver post...</a>
                 </div>
               </div>
 
@@ -66,8 +66,8 @@
 
     <div class="blog-pagination">
       <ul class="justify-content-center">
-        <li><a href="#">1</a></li>
-        <li class="active"><a href="#">2</a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
         <li><a href="#">3</a></li>
       </ul>
     </div>
@@ -106,7 +106,7 @@
         {% for last in posts %}
 
         <div class="post-item clearfix">
-          <img src="{{last.post_image.url}}" alt="img-fluid img-thumbnail">
+          <img src="{{last.post_image.url}}" alt="">
           <h4><a href="{% url 'post' last.slug %}">{{last.post_title}}</a></h4>
           <time>{{ last.published }}</time>
         </div>

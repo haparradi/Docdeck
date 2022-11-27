@@ -26,17 +26,20 @@
   
   <!-- Vendor CSS Files -->
   <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendor/animate.css/animate.min.css" rel="stylesheet">
   <link href="/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="/static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="/static/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="/static/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="/static/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="/static/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- HTMX -->
-  <script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/htmx.org@1.8.4" integrity="sha384-wg5Y/JwF7VxGk4zLsJEcAojRtlVp1FKKdGy1qN+OMtdq72WRvX/EdRdqg/LOhYeV" crossorigin="anonymous"></script>
 
-  </head>
+</head>
 
 <body id="body">
         
@@ -85,7 +88,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
               Tienes {% with consulta=user.consulta|read %}{{consulta|length}} {% endwith %} notificaciones
-              <a href="{% url 'consultas' %}"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver todas</span></a>
+              <a href="{% url 'consultas' %}"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver  todas</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -152,22 +155,22 @@
               <hr class="dropdown-divider">
             </li> -->
             <li class="dropdown-footer">
-              <a href="#">Mostrar todas las</a>
+              <a href="#">Ver notificaciones</a>
             </li>
             
           </ul><!-- End Notification Dropdown Items -->
           
         </li><!-- End Notification Nav -->
         
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
             <span class="badge bg-success badge-number">3</span>
 
-          </a><!-- End Messages Icon -->
+          </a>End Messages Icon -->
           
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+          <!-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
               You have 3 new messages
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
@@ -222,9 +225,9 @@
               <a href="#">Show all messages</a>
             </li>
             
-          </ul><!-- End Messages Dropdown Items -->
+          </ul>End Messages Dropdown Items
           
-        </li><!-- End Messages Nav -->
+        </li>End Messages Nav -->
         
         <li class="nav-item dropdown pe-3">
           
@@ -258,7 +261,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                 <i class="bi bi-question-circle"></i>
-                <span>Necesitas ayuda?</span>
+                <span>¿Necesitas ayuda?</span>
               </a>
             </li>
             <li>
@@ -318,7 +321,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{% url 'records' %}">
           <i class="ri-folder-open-fill"></i>
-          <span>Historias Clinicas</span>
+          <span>Historias Clínicas</span>
         </a>
         
       </li><!-- End Historias Clinicas Page Nav -->
@@ -330,7 +333,7 @@
         </a>
         
       </li><!-- End Consultas Page Nav-->
-      <li class="nav-heading">Paginas</li>
+      <li class="nav-heading">Páginas</li>
       
       <li class="nav-item">
         <a class="nav-link collapsed" href="{% url 'profile' %}">
@@ -347,11 +350,11 @@
 
       </li><!-- End home Page Nav -->
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="{% url 'blog' %}">
           <i class="ri-newspaper-line"></i>
           <span>Blog</span>
-        </a>
+        </a> -->
 
       </li><!-- End Blog Page Nav -->
       
@@ -374,14 +377,14 @@
     </div>
   </div>
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+  <!-- <footer id="footer" class="footer">
     <div class="copyright">
       &copy; Copyright <strong><span>DocDeck</span></strong>. All Rights Reserved 2022.
     </div>
     <div class="credits">
       Designed by <a href="https://Docdeck.co/">Docdeck</a>
     </div>
-  </footer><!-- End Footer -->
+  </footer>End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

@@ -30,7 +30,7 @@
                 <p>Telefono: {{patient.telefono}}</p>
                 <p>E-mail: {{patient.email}}</p>
                 <p>Estado civil: {{patient.estado_civil}}</p>
-                <p class="card-text"><a href="{% url 'history-detail' patient.record.id %}" class="btn btn-primary">Ver historia clinica</a></p>
+                <p class="card-text"><a href="{% url 'history-detail' patient.record.id %}" class="btn btn-primary">Ver historia clínica</a></p>
                 <p class="card-text"><a href="{% url 'update-patient' patient.id %}" class="btn btn-primary">Actualizar</a></p>
             
             {% else %}
@@ -41,7 +41,7 @@
                 <p>Telefono: {{patient.telefono}}</p>
                 <p>E-mail: {{patient.email}}</p>
                 <p>Estado civil: {{patient.estado_civil}}</p>
-                <p class="card-text"><a href="{% url 'add-history' patient.id %}" class="btn btn-primary">Agregar historia clinica</a></p>
+                <p class="card-text"><a href="{% url 'add-history' patient.id %}" class="btn btn-primary">Agregar historia clínica</a></p>
                 <p class="card-text"><a href="{% url 'update-patient' patient.id %}" class="btn btn-primary">Actualizar</a></p>
             {% endif %}            
         </div>

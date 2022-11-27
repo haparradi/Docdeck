@@ -47,52 +47,52 @@
               <ul class="nav nav-tabs nav-tabs-bordered">
                 
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Perfil</button>
                 </li>
                 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Editar Perfil</button>
                 </li>
                 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Configuración</button>
                 </li>
                 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Cambiar contraseña</button>
                 </li>
                 
               </ul>
               <div class="tab-content pt-2">
                 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">About</h5>
+                  <h5 class="card-title">Descripción:</h5>
                   <p class="small fst-italic">{{user.profile.bio}}</p>
                   
                   
                   {% if mensaje %}
                     <div style="color: red;">{{mensaje}}  </div>
                   {% endif %}
-                  <h5 class="card-title">Profile Details</h5>
+                  <h5 class="card-title">Detalles del perfil</h5>
                   
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                    <div class="col-lg-3 col-md-4 label ">Nombre Completo:</div>
                     <div class="col-lg-9 col-md-8">{{user.first_name}} {{user.last_name}}</div>
                   </div>
                   
                                     
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Especialidad</div>
+                    <div class="col-lg-3 col-md-4 label">Especialidad:</div>
                     <div class="col-lg-9 col-md-8">{{user.especialidad}}</div>
                   </div>
                                    
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Telefono</div>
+                    <div class="col-lg-3 col-md-4 label">Teléfono:</div>
                     <div class="col-lg-9 col-md-8">{{user.telefono}}</div>
                   </div>
                   
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-3 col-md-4 label">Email:</div>
                     <div class="col-lg-9 col-md-8">{{user.email}}</div>
                   </div>
 
@@ -109,7 +109,7 @@
                         <img src="{{user.profile.avatar.url}}" alt="Profile">
                         <div class="pt-2">
                           {{profile_form.avatar.errors}}
-                          <a class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload">{% render_field profile_form.avatar %}</i></a>
+                          <a class="" title="Upload new profile image"><i class="bi bi-upload">{% render_field profile_form.avatar %}</i></a>
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
                       </div>
@@ -165,7 +165,7 @@
                     </div>
                                         
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                      <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
                 </div>
@@ -177,37 +177,37 @@
                   <form>
                     
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Notificarme vía Email por:</label>
                       <div class="col-md-8 col-lg-9">
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" id="changesMade" checked>
                           <label class="form-check-label" for="changesMade">
-                            Changes made to your account
+                            Cambios a mi cuenta.
                           </label>
                         </div>
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" id="newProducts" checked>
                           <label class="form-check-label" for="newProducts">
-                            Information on new products and services
+                            Información de actualizaciones y mejoras.
                           </label>
                         </div>
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" id="proOffers">
                           <label class="form-check-label" for="proOffers">
-                            Marketing and promo offers
+                            Marketing y ofertas promocionales.
                           </label>
                         </div>
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
                           <label class="form-check-label" for="securityNotify">
-                            Security alerts
+                            Alertas de Seguridad.
                           </label>
                         </div>
                       </div>
                     </div>
                     
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </div>
                   </form><!-- End settings Form -->
                   
@@ -242,7 +242,7 @@
                     </div>
                     
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary" >Change Password</button>
+                      <button type="submit" class="btn btn-primary" >Cambiar contraseña</button>
                     </div>
                   </form><!-- End Change Password Form -->
                   

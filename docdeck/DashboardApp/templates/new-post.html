@@ -1,0 +1,87 @@
+
+{% extends 'dashboard-master.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block changing-part %}
+
+<main id="main" class="main">
+    
+    <div class="pagetitle">
+      <h1>Nuevo Post</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active"><a href="{% url 'index' %}">Dashboard</a></li>
+          <!-- <li class="breadcrumb-item active"><a href="{% url 'index' %}">Blog</a></li> -->
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">Nuevo Post</h5>
+            <p></p>
+
+            <form action="{% url 'new-post' %}" method="POST" class="form-control" enctype="multipart/form-data">{% csrf_token %}
+
+                <div class="row mb-3">
+                    <label for="BlogPost" class="col-md-4 col-lg-3 col-form-label">{{form.category.label_tag}}</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{form.category.errors}}
+                        {% render_field form.category %}
+                    </div>                    
+                </div>
+                <div class="row mb-3">
+                    <label for="BlogPost" class="col-md-4 col-lg-3 col-form-label">{{form.post_image.label_tag}}</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{form.post_image.errors}}
+                        {% render_field form.post_image %}
+                    </div>                    
+                </div>
+                <div class="row mb-3">
+                    <label for="BlogPost" class="col-md-4 col-lg-3 col-form-label">{{form.post_title.label_tag}}</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{form.post_title.errors}}
+                        {% render_field form.post_title %}
+                    </div>                    
+                </div>
+                <div class="row mb-3">
+                    <label for="BlogPost" class="col-md-4 col-lg-3 col-form-label">{{form.post_description.label_tag}}</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{form.post_description.errors}}
+                        {% render_field form.post_description %}
+                    </div>                    
+                </div>
+                <div class="row mb-3">
+                    <label for="BlogPost" class="col-md-4 col-lg-3 col-form-label">{{form.post_content.label_tag}}</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{form.post_content.errors}}
+                        {% render_field form.post_content %}
+                    </div>                    
+                </div>
+                <div class="row mb-3">
+                    <label for="BlogPost" class="col-md-4 col-lg-3 col-form-label">{{form.status.label_tag}}</label>
+                    <div class="col-md-8 col-lg-9">
+                        {{form.status.errors}}
+                        {% render_field form.status %}
+                    </div>                    
+                </div>
+
+
+
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Publicar</button>
+                </div>
+            </form>
+
+
+            </div>
+        </div><!-- End Card with titles, buttons, and links -->
+    </section>
+
+
+
+{% endblock %}  

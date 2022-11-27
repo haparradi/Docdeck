@@ -29,6 +29,8 @@ urlpatterns = [
     path('services/', views.services, name='services'),
     path('about/', views.about, name='about'),
     path('contact/', enviar_consulta, name='contact'),
+    # path('team/', views.team, name='team'),
+    
 ]
 
 htmx_views = [

@@ -1,0 +1,67 @@
+<section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+        {% for blog in blog_posts %}
+                <article class="entry">
+
+                  <div class="entry-img">
+                    <div class="col-md-4 px-0">
+                      <img src="{{blog.post_image.url}}" alt="image" class="img-thumbnail img-resize">
+                    </div>
+                    
+                  </div>
+    
+                  <h2 class="entry-title">
+                    <a href="#">{{blog.post_title}}</a>
+                  </h2>
+                  <div class="entry-meta">
+                    <ul>
+                      <li class="d-flex align-items-center"><i class="bi bi-person" title="autor" ></i> <a href="#">{{ blog.author }}</a></li>
+                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">{{ blog.published }}</a></li>
+                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">{{blog.comments.all|length}} Comentarios</a></li>
+                    </ul>
+                  </div>
+                  <h6 class="post-description">{{ post.post_description }}</h6>
+                  <p></p>
+                  <p></p>
+                  <p></p>
+                  <div class="entry-content">
+                    <p>
+                      {{ blog.post_content }}
+                    </p>
+                    <div class="read-more d-flex justify-content-between">
+                        <a href="{% url 'post' blog.slug %}">Ver post...</a>
+                        
+                        {% if user.is_superuser %}
+                            <i class="btn btn-danger btn-sm bi bi-trash" 
+                            hx-delete="{% url 'delete-post' blog.pk %}"
+                            hx-target="#body"
+                            hx-confirm="Esta seguro"
+                            title="DeletePatient"></i>
+                        {% elif user.id == blog.author.id%}
+                            <i class="btn btn-danger btn-sm bi bi-trash" 
+                            hx-delete="{% url 'delete-post' blog.pk %}"
+                            hx-target="#body"
+                            hx-confirm="Esta seguro"
+                            title="DeletePost"></i>
+                        {% endif %}
+                    </div>
+                  </div>
+                </article>
+        {% endfor %}
+
+
+{% if page_object.has_next %}
+
+    <tr id="load-more">
+        <td colspan="3" class="text-center">
+            <button class="btn btn-primary"
+                    hx-get="{% url 'index' %}?page={{page_object.next_page_number}}"
+                    hx-target="#load-more"
+                    hx-swap="outerHTML">Cargar mas...</button>
+        </td>
+    </tr>
+
+{% endif %}
+
+    </div>
+</section>

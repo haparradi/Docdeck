@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'BlogApp',
     'widget_tweaks',
     'django_extensions',
-    'phone_field',      
-]
+    'phone_field',
+    'django_htmx',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = 'docdeck.urls'
