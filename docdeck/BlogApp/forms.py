@@ -3,7 +3,6 @@ from .models import BlogPosts, Comments, Category
 from django import forms
 
 class BlogForm(forms.ModelForm):
-    post_image = forms.ImageField()
     
     class Meta:
         model = BlogPosts
