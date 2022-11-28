@@ -1,6 +1,7 @@
+
 <section id="blog" class="blog">
     <div class="container" data-aos="fade-up">
-        {% for blog in blog_posts %}
+        {% for blog in page_object %}
                 <article class="entry">
 
                   <div class="entry-img">
@@ -52,14 +53,15 @@
 
 {% if page_object.has_next %}
 
-    <tr id="load-more">
-        <td colspan="3" class="text-center">
-            <button class="btn btn-primary"
-                    hx-get="{% url 'index' %}?page={{page_object.next_page_number}}"
-                    hx-target="#load-more"
-                    hx-swap="outerHTML">Load More</button>
-        </td>
-    </tr>
+  <tr id="" title="CargarMas">
+    <td colspan="3" class="text-center">
+        <button class="btn btn-primary"
+                hx-get="{% url 'index' %}?page={{page_object.next_page_number}}"
+                data-hx-target=""
+                hx-swap="outerHTML">Load More</button>
+               
+    </td>
+  </tr>
 
 {% endif %}
 

@@ -99,9 +99,15 @@ def delete_post(request, pk):
         post = BlogPosts.objects.get(pk=pk)
         post.delete()
         blog_posts = BlogPosts.objects.all()
+        paginator = Paginator(blog_posts, 4)
+        page_number = request.GET.get('page',1)
+        page_object = paginator.get_page(page_number)
     else:
         post = request.user.blog_post.get(pk = pk)
         post.delete()
         blog_posts = BlogPosts.objects.all()
+        paginator = Paginator(blog_posts, 4)
+        page_number = request.GET.get('page',1)
+        page_object = paginator.get_page(page_number)
     
-    return render(request, 'index.html', {'blog_posts':blog_posts})
+    return render(request, 'index.html', {'page_object':page_object})
