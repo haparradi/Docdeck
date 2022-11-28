@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 
 from .models import BlogPosts, Comments
 from .forms import BlogForm, CommentForm
+from PacientesApp.models import Consulta
 
 from django.views.decorators.http import require_http_methods
 from django.views.generic import TemplateView, DetailView
@@ -95,13 +96,20 @@ class PostDetail(DetailView, LoginRequiredMixin):
 @login_required
 @require_http_methods(['DELETE'])
 def delete_post(request, pk):
+    consultas = request.user.consulta.all()
     if request.user.is_superuser:
         post = BlogPosts.objects.get(pk=pk)
         post.delete()
         blog_posts = BlogPosts.objects.all()
+        paginator = Paginator(blog_posts, 4)
+        page_number = request.GET.get('page',1)
+        page_object = paginator.get_page(page_number)
     else:
         post = request.user.blog_post.get(pk = pk)
         post.delete()
         blog_posts = BlogPosts.objects.all()
+        paginator = Paginator(blog_posts, 4)
+        page_number = request.GET.get('page',1)
+        page_object = paginator.get_page(page_number)
     
-    return render(request, 'index.html', {'blog_posts':blog_posts})
+    return render(request, 'partials/post-list.html', {'page_object':page_object, 'consultas':consultas})
