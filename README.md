@@ -21,3 +21,4 @@ Las dependecias del proyecto estan indicadas en el Pipfile!
   django-widget-tweaks = "*"
   django-phone-field = "*"
   django-extensions = "*"
+  django-htmx = "*"
