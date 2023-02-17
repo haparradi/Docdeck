@@ -1,6 +1,7 @@
 <section id="blog" class="blog">
     <div class="container" data-aos="fade-up">
-      
+    
+
       {% if page_object %}
      
         
@@ -9,7 +10,14 @@
 
                   <div class="entry-img">
                     <div class="col-md-4 px-0">
-                      <img src="{{blog.post_image.url}}" alt="image" class="img-thumbnail img-resize">
+                      
+                      {% if blog.post_image.url != None %}
+
+                        <img src="{{blog.post_image.url}}" alt="image" class="img-thumbnail img-resize">
+                        
+                      {% endif %}
+                     
+                        
                     </div>
                     
                   </div>
@@ -75,3 +83,4 @@
 
     </div>
 </section>
+

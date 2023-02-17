@@ -9,6 +9,13 @@ class RegisterForm(UserCreationForm):
         model = Doctor
         fields = ["username", "email", "password1", "password2"]
         
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if len(username) <= 3:
+            raise forms.ValidationError("El usuario es muy corto")
+        return username
+    
+        
 class UpdateUserForm(UserChangeForm):
     
     class Meta:

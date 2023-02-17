@@ -56,9 +56,10 @@ def new_post(request):
             # post.save()
             # post.author.set(request.user.id)
             post.save()
-            
+            print(type(data['post_image']))
             post.post_image=data['post_image']
             post.save()
+            print(type(post.post_image.url))
             
             return redirect('index')
         return render(request, 'new-post.html', {'form':form})

@@ -29,8 +29,7 @@ def index(request):
     print(request.htmx == False)
     
     if request.htmx:
-        print('hola')
-        
+              
         return render(request, 'partials/post-list.html', {'consultas':consultas, 'page_object':page_object})
     
     return render(request, 'index.html', {'consultas':consultas, 'page_object':page_object})

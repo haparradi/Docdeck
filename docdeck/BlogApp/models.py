@@ -25,7 +25,7 @@ class BlogPosts(models.Model):
     )
             
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
-    post_image = models.ImageField(null=True, blank=True, upload_to = 'media/', default="default_avatar.jpg")
+    post_image = models.ImageField(null=True, blank=True, upload_to = 'media/', default = None)
     post_title = models.CharField(max_length=400)
     post_description = models.TextField(null=True)
     post_content = models.TextField()
